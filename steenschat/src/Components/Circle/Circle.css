@@ -1,0 +1,89 @@
+.half-circle {
+    width: 200px;
+    height: 100px;
+    border-radius: 0 0 75% 75% / 0 0 150% 150%;
+    background-color: var(--color-brand);
+}
+
+/*Colors*/
+.half-circle--red {
+    background-color: var(--color-red-dark);
+}
+.half-circle--light-red {
+    background-color: var(--color-red-light);
+}
+
+.half-circle--blue {
+    background-color: var(--color-blue-dark);
+}
+.half-circle--purple {
+    background-color: var(--color-blue-purple);
+}
+
+.half-circle--green {
+    background-color: var(--color-green-light);
+}
+.half-circle--lemon {
+    background-color: var(--color-green-lemon);
+}
+
+.half-circle--yellow {
+    background-color: var(--color-yellow-dark);
+}
+.half-circle--orange {
+    background-color: var(--color-yellow-orange);
+}
+
+/*Sizes*/
+.half-circle--small {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    bottom: 95px;
+    left: -22px;
+    rotate: 70.73deg;
+}
+.half-circle--medium {
+    width: 115px;
+    height: 57.5px;
+    position: absolute;
+    top: 8px;
+    right: -14px;
+    rotate: -140.27deg;
+}
+.half-circle--large {
+    //scale: 0.625;
+    width: 125px;
+    height: 62.5px;
+    position: absolute;
+    bottom: 9px;
+    left: 6px;
+    rotate: -39.36deg;
+}
+.half-circle--xlarge {
+    width: 100svw;
+    height: 50svw;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    rotate: 180deg;
+}
+.half-circle--base {
+    width: 142px;
+    height: 71px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* Text */
+.half-circle--with-text {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding-bottom: var(--xxl); //32px
+}
+
+.half-circle__text {
+    text-transform: capitalize;
+}

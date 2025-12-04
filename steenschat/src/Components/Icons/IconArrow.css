@@ -1,0 +1,41 @@
+/* Size */
+/*.circle--default {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}*/
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.circle--button {
+    width: 32px; //48px;
+    height: 32px; //48px;
+}
+.circle--in-text {
+    width: 24px;
+    height: 24px;
+}
+
+/* Color */
+.circle--red {
+    background-color: var(--color-red-dark);
+    rotate: 180deg;
+}
+.circle--green {
+    background-color: var(--color-green-light);
+    rotate: -90deg;
+}
+.circle--yellow {
+    background-color: var(--color-yellow-dark);
+    rotate: 90deg;
+}
+.circle--blue {
+    background-color: var(--color-blue-light);
+}
+
+.arrow {
+    stroke: white;
+}

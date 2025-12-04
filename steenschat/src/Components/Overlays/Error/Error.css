@@ -1,0 +1,53 @@
+.error-overlay {
+    background-color: var(--color-overlay);
+    position: relative;
+    z-index: 2;
+    //padding: 64px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--size-spacing-small);
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 50px);
+    grid-template-rows: repeat(3, 50px);
+}
+
+.img__chest {
+    transform: scaleX(-1);
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 2;
+}
+
+.img__arrow {
+    grid-column: 3 / span 4;
+}
+
+.img__stone {
+    //width: 50px;
+    //height: 50px;
+    width: 75px;
+    grid-column: 6 / span 2;
+    grid-row: 2 / span 2;
+    align-self: end;
+    justify-self: center;
+}
+
+.img__camera {
+    width: 60px;
+    height: 60px;
+    grid-column: 7 / span 2;
+    grid-row: 1 / span 2;
+    justify-self: end;
+    rotate: 142deg;
+}

@@ -1,0 +1,38 @@
+.container--fact {
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 48px;
+}
+
+
+/* Fact */
+.fact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-spacing-large); //24px
+}
+
+.fact-content__title {
+    text-transform: capitalize;
+}
+
+.fact-content__img {
+    width: 164px;
+    height: 164px;
+}
+
+.fact-content__fact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-spacing-base); //16px
+}
+
+.fact__big-text{
+    font-size: var(--size-text-big); //24px
+}

@@ -1,0 +1,50 @@
+/*.catch-container {
+  position: relative;
+  width: 450px;
+  height: 500px;
+  background: #eef2f3;
+  border: 2px solid #aaa;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* SCORE DISPLAY RECHTS BOVEN */
+/*.score-display {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 20;
+}
+
+.score-display p {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* MAND */
+.basket {
+  position: absolute;
+  bottom: 20px;
+  width: 130px;
+  height: auto;
+}
+
+/* STENEN */
+.stone {
+  position: absolute;
+  width: 50px;
+  height: auto;
+}
+
+/* GAME OVER */
+.game-over {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}

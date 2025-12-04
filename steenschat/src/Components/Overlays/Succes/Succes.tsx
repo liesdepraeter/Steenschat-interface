@@ -1,0 +1,25 @@
+import { useNavigate } from 'react-router-dom';
+import IconArrow from "../../Icons/IconArrow"
+import './Succes.css'
+
+
+function Succes() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/');
+  };
+
+
+  return (
+    <div className="full-screen-container allert-overlay" onClick={handleClick}>
+        <div className='succes-box'>
+            <p className='title-text'>Proficiat!</p>
+            <p className='bold-text'>Druk op een knop om een nieuwe steen te ontdekken</p>
+            <IconArrow/>
+        </div>
+    </div>
+  )
+}
+
+export default Succes

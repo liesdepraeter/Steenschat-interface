@@ -1,0 +1,14 @@
+.full-screen-container {
+    height: 100svh;
+    width: 100svw;
+    display: flex;
+    flex-direction: column;
+    //padding: 64px;
+    padding: 32px;
+}
+
+.container--home {
+    align-items: center;
+    gap: var(--size-spacing-large);
+    justify-content: space-between;
+}

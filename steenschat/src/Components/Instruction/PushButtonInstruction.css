@@ -1,0 +1,6 @@
+.instruction-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--size-spacing-small);
+}

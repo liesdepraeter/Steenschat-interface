@@ -1,0 +1,121 @@
+@font-face {
+  font-family: "Mabry Black Pro";
+  src: url("/fonts/mabry-black-pro.otf") format("otf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Regular.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/fonts/Lato-Bold.ttf") format("ttf");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* Primitives */
+:root {
+  /* Colors */
+  --color-sand: #F5F2E3;
+  --color-black: #121212;
+  --color-white: #ffffff;
+  --color-transparant-black: #12121292;
+  /*Colors-Green*/
+  --color-green-light: #26D1A6;
+  --color-green-dark: #008C3B;
+  --color-green-lemon: #CFD95C;
+  /* Colors-Yellow*/
+  --color-yellow-light: #F7DE4F;
+  --color-yellow-dark: #FAC905;
+  --color-yellow-orange: #FF9933;
+  /* Colors-Blue */
+  --color-blue-purple: #CCCCFF;
+  --color-blue-light: #2E5EF5;
+  --color-blue-dark: #03009C;
+  /* Colors-Red */
+  --color-red-light: #F7794F;
+  --color-red-dark: #E54038;
+  --color-red-pink: #F29EBF;
+
+  /* Sizes */
+  --xs: 8px;
+  --s: 12px;
+  --base: 16px;
+  --m: 18px; 
+  --l: 20px;
+  --xl: 24px;
+  --xxl: 32px;
+}
+
+
+/* Tokens */
+:root {
+  /* Colors */
+  --color-background: var(--color-sand);
+  --color-brand: var(--color-green-light);
+  --color-accent: var(--color-blue-purple);
+  --color-tertairy: var(--color-red-light);
+  --color-overlay: var(--color-transparant-black);
+  /*Colors-Text*/
+  --color-text-default: var(--color-blue-dark);
+  --color-text-reverse: var(--color-white);
+
+  /* Sizes */
+  /* Text */
+  --size-text-small: var(--s);
+  --size-text-default: var(--base);
+  --size-text-big: var(--xl);
+  --size-text-title: var(--xxl);
+  /* Spacing */
+  --size-spacing-small: var(--xs);
+  --size-spacing-base: var(--s);
+  --size-spacing-medium: var(--base);
+  --size-spacing-large: var(--xl);
+  /* Radius */
+  --size-radius-small: var(--xs);
+  --size-radius-base: var(--s);
+  /* Border */
+  --size-border-base: var(--xs);
+}
+
+:root {
+  background-color: var(--color-background);
+  overflow: hidden;
+}
+
+.title-text {
+  font-family: 'Mabry Pro Black', Arial, Helvetica, sans-serif;
+  line-height: 150%;
+  font-size: var(--size-text-title);
+  color: var(--color-text-default);
+}
+
+.default-text {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 100%;
+  font-size: var(--size-text-default);
+  color: var(--color-text-default);
+}
+
+.bold-text {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 100%;
+  font-size: var(--size-text-default);
+  color: var(--color-text-default);
+}
+
+.text--reverse {
+  color: var(--color-text-reverse)
+}

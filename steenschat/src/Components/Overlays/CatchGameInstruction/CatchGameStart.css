@@ -1,0 +1,47 @@
+.overlay-start {
+    background-color: var(--color-overlay);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    
+}
+
+.container--catch-game {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 32px;
+}
+
+
+.game-instruction {
+    //color: var(--color-text-reverse);
+    display: flex;
+    flex-direction: column;
+    //justify-content: center;
+    align-items: center;
+    gap: var(--size-spacing-large);
+}
+
+.game-intstruction__text-box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-spacing-small);
+}
+
+.game-instruction__text {
+    display: flex;
+    gap: var(--size-spacing-small);
+    justify-content: center;
+    align-items: center;
+}
+.game-instruction__cards {
+    display: flex;
+    gap: var(--size-spacing-medium);
+}
