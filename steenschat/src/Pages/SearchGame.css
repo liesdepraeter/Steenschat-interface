@@ -1,0 +1,111 @@
+.background-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.content__text {
+    font-size: var(--l); /*20px*/
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    z-index: 2; /*10*/
+}
+
+.pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/rock.jpg');
+    background-size: cover;
+    pointer-events: none;
+}
+
+.container {
+    background-image: url('/images/cave.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    clip-path: circle(0px at 50% 50%);
+    transition: clip-path 0.1s ease;
+}
+
+.magnifying-glass-reveal {
+    position: absolute;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background: transparent;
+    pointer-events: none;
+    z-index: 3; /*5*/
+}
+
+/* Algemene rock styling */
+.rock {
+    position: absolute;
+    height: 8rem;
+    width: 8rem;
+    border-radius: 0%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Specifieke steen-achtergrondafbeeldingen via classes */
+.rock.amethist { background-image: url('/images/amethist.png'); left: 30%; top: 55%; }
+.rock.rozenkwarts { background-image: url('/images/rozenkwarts.png'); left: 65%; top: 28%; }
+.rock.citrien { background-image: url('/images/citrien.png'); left: 12%; top: 72%; }
+.rock.aventurijn { background-image: url('/images/aventurijn.png'); left: 72%; top: 62%; }
+.rock.obsidiaan { background-image: url('/images/obsidiaan.png'); left: 45%; top: 18%; }
+
+/* Fallback stenen (kleur in plaats van afbeelding) */
+.rock.stone-ruby { background-color: rgba(255,50,50,0.9); }
+.rock.stone-emerald { background-color: rgba(30,180,90,0.9); }
+.rock.stone-topaz { background-color: rgba(255,200,50,0.9); }
+.rock.stone-quartz { background-color: rgba(220,220,220,0.95); }
+
+/* Magnifying glass element */
+.image {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: transparent;
+    z-index: 4; /*100*/
+}
+
+.options-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5; /*50*/
+    background: rgba(0,0,0,0.6);
+    color: white;
+}
+.options-list { display: flex; gap: 1rem; margin-top: 1rem; }
+.option { background: white; color: black; border: none; padding: 0.5rem; border-radius: 8px; display:flex; flex-direction:column; align-items:center; }
+.option-preview img { width: 64px; height:64px; object-fit:contain }
+.preview-placeholder { width:64px; height:64px; border-radius:8px }
+.preview-ruby { background: linear-gradient(45deg, #ff6b6b, #ff3b3b) }
+.preview-emerald { background: linear-gradient(45deg, #4ecf8c, #2aa65a) }
+.preview-topaz { background: linear-gradient(45deg, #ffd966, #ffb857) }
+.preview-quartz { background: linear-gradient(45deg, #f2f2f2, #dcdcdc) }

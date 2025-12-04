@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './WebcamViewer.css';
+import './WebCamViewer.css';
 import IconCamera from '../Icons/IconCamera';
 
 
