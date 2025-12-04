@@ -40,7 +40,7 @@
     stroke: white;
 }
 
-.circle--high {
+.arrow--high {
     position: relative;
     z-index: 3;
 }

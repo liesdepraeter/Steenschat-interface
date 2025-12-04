@@ -17,7 +17,7 @@ const IconArrow: React.FC<CircleProps> = ({ index='default', size, color, arrow 
     'circle',
     size ? `circle--${size}` : '',
     color ? `circle--${color}` : '',
-    index? `circle--${index}` : '',
+    index? `arrow--${index}` : '',
   ].join(' ').trim();
 
   let arrowSize = 45; 

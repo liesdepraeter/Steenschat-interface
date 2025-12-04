@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
-import checkmark from "../../../public/images/Check-mark.png";
 import "./RockRegistration.css";
+
+const checkmarkImage = "/images/Check-mark.png";
 
 export default function RockRegistration() {
   const foundRef = useRef(false);
@@ -46,7 +47,7 @@ export default function RockRegistration() {
 
         const img = document.createElement("img");
         img.className = "checkmark-img";
-        img.src = checkmark;
+        img.src = checkmarkImage;
         img.alt = "found";
 
         wrapper.appendChild(img);

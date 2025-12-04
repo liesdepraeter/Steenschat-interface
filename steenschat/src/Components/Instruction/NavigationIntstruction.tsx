@@ -15,7 +15,7 @@ interface InstructionProps {
 const NavigationIntstruction: React.FC<InstructionProps> = ({ index='default', color, variant='rozenkwarts' }) => {
   const gameMap: Record<StoneVariant, string> = {
     rozenkwarts: 'catchgame',
-    citrien: 'catchgame',
+    citrien: 'searchgame',
     aventurijn: 'catchgame',
     amethist: 'catchgame',
     obsidiaan: 'catchgame',
@@ -33,7 +33,7 @@ const NavigationIntstruction: React.FC<InstructionProps> = ({ index='default', c
   }
 
   return (
-    <div className={`nav index--${index}`}>
+    <div className={`nav instruction--${index}`}>
         <div className='nav__back' onClick={handleBack}>
             <IconArrow size='button' color='yellow' arrow={color==='white'? 'white' : 'blue'}/>
             <p className={`default-text ${color === 'white' ? 'text--reverse' : ''}`}>Ontdek een nieuwe steen</p>

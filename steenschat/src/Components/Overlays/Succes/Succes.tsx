@@ -15,7 +15,8 @@ function Succes() {
     <div className="full-screen-container allert-overlay" onClick={handleClick}>
         <div className='succes-box'>
             <p className='title-text'>Proficiat!</p>
-            <p className='bold-text'>Druk op een knop om een nieuwe steen te ontdekken</p>
+            <p className='bold-text'>Leg de steen terug in de schatkist</p>
+            <p className='bold-text'>Druk daarna op een knop om een nieuwe steen te ontdekken</p>
             <IconArrow/>
         </div>
     </div>

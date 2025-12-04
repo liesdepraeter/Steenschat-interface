@@ -62,9 +62,9 @@ const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
 export default SearchGame*/}
 
 import { useEffect, useState } from 'react'
-{/*import { useGameState } from '../Context/GameStateContext';*/}
+import { useGameState } from '../Context/GameStateContext';
 import Succes from "../Components/Overlays/Succes/Succes";
-{/*import SearchGameStart from '../Components/Overlays/SearchGameInstruction/SearchGameStart';*/}
+import SearchGameStart from '../Components/Overlays/SearchGameInstruction/SearchGameStart';
 import Circle from '../Components/Circle/Circle';
 import MagnifyingGlass from '../Components/SearchGame/MagnifyingGlass';
 import RockRegistration from '../Components/SearchGame/RockRegistration';
@@ -94,6 +94,7 @@ const POSITIONS: Record<StoneType, { left: string; top: string }> = {
 
 const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
   {/*const { showStart, showSuccess } = useGameState();*/}
+  const {isPaused, showStart, showSuccess, hasStarted, setIsPaused, setShowStart, setShowSuccess, setHasStarted} = useGameState();
 
   const [found, setFound] = useState(window.location.hash === '#found');
   const [selectedStone] = useState<StoneType>(variant); // direct gelijk aan variant
@@ -111,25 +112,30 @@ const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
     <div className="full-screen-container">
       <Circle size="base" text={selectedStone} index='high'/>
 
-      {/*{showStart && (
-        <SearchGameStart
-          variant={variant}
-          onStart={() => {}}
-        />
-      )}
-        */}
+      <div className="background-content">
+        {/*<p className='content__text default-text text--reverse'>Beweeg het vergrootglas met de knoppen en vind de steen</p>*/}
+        <div className="pattern"></div>
+      </div>
 
-      {found ? (
+        {showStart && !showSuccess && (
+          <SearchGameStart
+            variant={variant}
+            onStart={() => {
+              setShowStart(false);
+              setHasStarted(true);
+              setIsPaused(false);
+            }}
+          />
+        )}
+
+      {showSuccess || found ? (
         <Succes />
-      ) : (
+      ) : hasStarted ? (
         <>
           <MagnifyingGlass />
           <RockRegistration />
 
-          <div className="background-content">
-            <p className='content__text default-text text--reverse'>Beweeg het vergrootglas met de knoppen en vind de steen</p>
-            <div className="pattern"></div>
-          </div>
+          
 
           <div className="container">
             {selectedStone && (() => {
@@ -152,7 +158,7 @@ const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
             })()}
           </div>
         </>
-      )}
+      ): null}
     </div>
   );
 };
