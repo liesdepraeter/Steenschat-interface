@@ -34,8 +34,8 @@ function CatchGameStart({variant='rozenkwarts', onStart} : CatchGameProps) {
                 
                 
                 <div className='game-instruction__cards'>
-                    <ScoreInstruction score='+1' variant={variant}/>
                     <ScoreInstruction score='-1' variant={variant}/>
+                    <ScoreInstruction score='+1' variant={variant}/>
                 </div>
             </div>
             <NavigationIntstruction color='white' variant={variant}/>

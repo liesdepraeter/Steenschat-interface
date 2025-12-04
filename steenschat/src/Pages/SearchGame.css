@@ -32,7 +32,7 @@
 
 .container {
     background-image: url('/images/cave.png');
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     width: 100vw;
     height: 100vh;

@@ -66,8 +66,8 @@ import { useEffect, useState } from 'react'
 import Succes from "../Components/Overlays/Succes/Succes";
 {/*import SearchGameStart from '../Components/Overlays/SearchGameInstruction/SearchGameStart';*/}
 import Circle from '../Components/Circle/Circle';
-{/*import MagnifyingGlass from '../Components/SearchGame/MagnifyingGlass';
-import RockRegistration from '../Components/SearchGame/RockRegistration';*/}
+import MagnifyingGlass from '../Components/SearchGame/MagnifyingGlass';
+import RockRegistration from '../Components/SearchGame/RockRegistration';
 import './SearchGame.css'
 
 type StoneType = "rozenkwarts" | "citrien" | "aventurijn" | "obsidiaan" | "amethist";
@@ -109,7 +109,7 @@ const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
 
   return (
     <div className="full-screen-container">
-      <Circle size="base" text={selectedStone} />
+      <Circle size="base" text={selectedStone} index='high'/>
 
       {/*{showStart && (
         <SearchGameStart
@@ -117,15 +117,14 @@ const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
           onStart={() => {}}
         />
       )}
-
-      {showSuccess && <Succes />}*/}
+        */}
 
       {found ? (
         <Succes />
       ) : (
         <>
-          {/*<MagnifyingGlass />
-          <RockRegistration />*/}
+          <MagnifyingGlass />
+          <RockRegistration />
 
           <div className="background-content">
             <p className='content__text default-text text--reverse'>Beweeg het vergrootglas met de knoppen en vind de steen</p>

@@ -87,3 +87,7 @@
 .half-circle__text {
     text-transform: capitalize;
 }
+
+.index--high {
+    z-index: 3;
+}

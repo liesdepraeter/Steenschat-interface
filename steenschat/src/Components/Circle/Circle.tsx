@@ -3,15 +3,17 @@ import './Circle.css'
 type CircleSize = 'small' | 'medium' | 'large' | 'base' | 'xlarge';
 type CircleColor = 'red' | 'blue' | 'light-red' | 'lemon' | 'green' | 'orange' | 'yellow' | 'purple';
 type CircleText = 'rozenkwarts' | 'citrien' | 'aventurijn' | 'obsidiaan' | 'amethist';
+type CircleIndex = 'default' | 'high';
 
 interface CircleProps {
   size?: CircleSize; 
   color?: CircleColor;
   text?: CircleText;
+  index?: CircleIndex;
   children?: React.ReactNode;
 }
 
-const Circle: React.FC<CircleProps> = ({ size, color, text, children }) => {
+const Circle: React.FC<CircleProps> = ({ size, color, text, index = 'default', children }) => {
 
   const textColorMap: Record<CircleText, CircleColor> = {
     rozenkwarts: 'red',
@@ -55,6 +57,7 @@ const Circle: React.FC<CircleProps> = ({ size, color, text, children }) => {
     size ? `half-circle--${size}` : '',
     finalColor ? `half-circle--${finalColor}` : '',
     (text || children) ? 'half-circle--with-text' : '',
+    index? `index--${index}` : '',
   ].join(' ').trim();
 
   return (
