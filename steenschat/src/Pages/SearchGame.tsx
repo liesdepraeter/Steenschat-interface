@@ -20,6 +20,14 @@ interface SearchGameProps {
   variant?: StoneType;
 }
 
+const stoneImages: Record<StoneType, string> = {
+  rozenkwarts: "/images/rozenkwarts.png",
+  citrien: "/images/citrien.png",
+  aventurijn: "/images/aventurijn.png",
+  obsidiaan: "/images/obsidiaan.png",
+  amethist: "/images/amethist.png",
+};
+
 
 const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
 
