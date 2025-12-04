@@ -2,19 +2,22 @@ import './IconArrow.css'
 type CircleColor = 'red' | 'blue' | 'green' | 'yellow';
 type CircleSize = 'default' | 'button' | 'in-text';
 type ArrowColor = 'blue' | 'white';
+type ArrowIndex = 'default' | 'high';
 
 interface CircleProps {
   size?: CircleSize; 
   color?: CircleColor;
   arrow?: ArrowColor;
+  index?: ArrowIndex;
 }
 
-const IconArrow: React.FC<CircleProps> = ({ size, color, arrow }) => {
+const IconArrow: React.FC<CircleProps> = ({ index='default', size, color, arrow }) => {
 
   const classes = [
     'circle',
     size ? `circle--${size}` : '',
     color ? `circle--${color}` : '',
+    index? `circle--${index}` : '',
   ].join(' ').trim();
 
   let arrowSize = 45; 

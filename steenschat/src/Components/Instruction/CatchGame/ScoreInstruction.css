@@ -1,6 +1,7 @@
 /* ---Score-card--- */
 .score-card {
     width: 203px;
+    height: 246px;
     background-color: var(--color-background);
     border-radius: var(--size-radius-small);
     display: flex;

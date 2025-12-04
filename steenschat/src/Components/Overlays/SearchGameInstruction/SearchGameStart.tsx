@@ -1,5 +1,6 @@
 import './SearchGameStart.css'
 import NavigationIntstruction from "../../Instruction/NavigationIntstruction";
+import IconArrow from '../../Icons/IconArrow';
 
 
 type GameVariant = 'rozenkwarts' | 'citrien' | 'aventurijn' | 'obsidiaan' | 'amethist';
@@ -16,8 +17,17 @@ function SearchGameStart({variant='rozenkwarts', onStart} : SearchGameProps) {
     };
 
   return (
-    <div className='full-screen-container overlay-start' onClick={handleOverlayClick}>
-        <NavigationIntstruction color='white' variant={variant}/>
+    <div className='full-screen-container container-content' onClick={handleOverlayClick}>
+      <p className='content__text default-text text--reverse'>Beweeg het vergrootglas met de knoppen en vind de steen</p>
+      <div className='arrow-wrapper'>
+        <IconArrow index='high' size='button' color='red' arrow='white'/>
+        <div className='arrow-wrapper__side'>
+          <IconArrow index='high' size='button' color='yellow' arrow='white'/>
+          <IconArrow index='high' size='button' color='green' arrow='white'/>
+        </div>
+        <IconArrow index='high' size='button' color='blue' arrow='white'/>
+      </div>
+      <NavigationIntstruction index='high' color='white' variant={variant}/>
     </div>
   )
 }

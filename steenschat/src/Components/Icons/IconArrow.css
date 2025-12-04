@@ -39,3 +39,8 @@
 .arrow {
     stroke: white;
 }
+
+.circle--high {
+    position: relative;
+    z-index: 3;
+}

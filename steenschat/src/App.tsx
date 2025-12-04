@@ -9,6 +9,7 @@ import Fact from './Pages/Fact'
 import CatchGame from './Pages/CatchGame'
 import SearchGame from './Pages/SearchGame'
 import Allert from './Components/Overlays/Allert/Allert'
+import SearchGameStart from './Components/Overlays/SearchGameInstruction/SearchGameStart';
 
 
 function App() {
@@ -52,6 +53,8 @@ function App() {
         <Route path='/citrien/searchgame' element={<SearchGame variant='citrien'/>}/>
         <Route path='/aventurijn/searchgame' element={<SearchGame variant='aventurijn'/>}/>
         <Route path='/obsidiaan/searchgame' element={<SearchGame variant='obsidiaan'/>}/>
+
+        <Route path='/searchgamestart' element={<SearchGameStart variant='obsidiaan'/>}/>
       </Routes>
 
       {showAlert && <Allert onPress={() => {

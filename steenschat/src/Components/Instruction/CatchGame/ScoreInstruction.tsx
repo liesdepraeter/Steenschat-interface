@@ -65,8 +65,9 @@ const ScoreInstruction: React.FC<ScoreProps> = ({ score, variant = 'rozenkwarts'
         <p className={scoreClasses}>{score}</p>
         <div className='score-card__img'>
             {imageContent}
-            <img className='img__basket' src="/images/mand.png" alt="" />
+            {/*<img className='img__basket' src="/images/mand.png" alt="" />*/}
         </div>
+        <div></div>
     </div>
   )
 }

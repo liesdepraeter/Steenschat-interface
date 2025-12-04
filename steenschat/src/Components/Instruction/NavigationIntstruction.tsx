@@ -4,13 +4,15 @@ import IconArrow from '../Icons/IconArrow'
 
 type Color = 'blue' | 'white';
 type StoneVariant = 'rozenkwarts' | 'citrien' | 'aventurijn' | 'obsidiaan' | 'amethist';
+type Index = 'default' | 'high';
 
 interface InstructionProps {
   color?: Color;
   variant?: StoneVariant;
+  index?: Index;
 }
 
-const NavigationIntstruction: React.FC<InstructionProps> = ({ color, variant='rozenkwarts' }) => {
+const NavigationIntstruction: React.FC<InstructionProps> = ({ index='default', color, variant='rozenkwarts' }) => {
   const gameMap: Record<StoneVariant, string> = {
     rozenkwarts: 'catchgame',
     citrien: 'catchgame',
@@ -31,7 +33,7 @@ const NavigationIntstruction: React.FC<InstructionProps> = ({ color, variant='ro
   }
 
   return (
-    <div className='nav'>
+    <div className={`nav index--${index}`}>
         <div className='nav__back' onClick={handleBack}>
             <IconArrow size='button' color='yellow' arrow={color==='white'? 'white' : 'blue'}/>
             <p className={`default-text ${color === 'white' ? 'text--reverse' : ''}`}>Ontdek een nieuwe steen</p>
