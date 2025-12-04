@@ -66,8 +66,8 @@ import { useEffect, useState } from 'react'
 import Succes from "../Components/Overlays/Succes/Succes";
 {/*import SearchGameStart from '../Components/Overlays/SearchGameInstruction/SearchGameStart';*/}
 import Circle from '../Components/Circle/Circle';
-import MagnifyingGlass from '../Components/SearchGame/MagnifyingGlass';
-import RockRegistration from '../Components/SearchGame/RockRegistration';
+{/*import MagnifyingGlass from '../Components/SearchGame/MagnifyingGlass';
+import RockRegistration from '../Components/SearchGame/RockRegistration';*/}
 import './SearchGame.css'
 
 type StoneType = "rozenkwarts" | "citrien" | "aventurijn" | "obsidiaan" | "amethist";
@@ -124,8 +124,8 @@ const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
         <Succes />
       ) : (
         <>
-          <MagnifyingGlass />
-          <RockRegistration />
+          {/*<MagnifyingGlass />
+          <RockRegistration />*/}
 
           <div className="background-content">
             <p className='content__text default-text text--reverse'>Beweeg het vergrootglas met de knoppen en vind de steen</p>
