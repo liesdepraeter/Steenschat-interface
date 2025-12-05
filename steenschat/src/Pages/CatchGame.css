@@ -24,12 +24,25 @@
 }
 
 /* MAND */
-.basket {
+.basket-container {
   position: absolute;
   bottom: 20px;
   width: 130px;
   height: auto;
 }
+
+.basket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.basket-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
 
 /* STENEN */
 .stone {

@@ -28,7 +28,8 @@ const stoneImages: Record<StoneType, string> = {
   amethist: "/images/amethist.png",
 };
 
-const basketImage = "/images/mand.png";
+const chestImage = "/images/treasure-chest-img.png";
+const chestBottomImage = "/images/treasure-chest-img--bottom.png";
 
 interface FallingStone {
   id: number;
@@ -182,7 +183,11 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
       {showSuccess && <Succes />}
 
       {/* BASKET */}
-      <img src={basketImage} className="basket" style={{ left: basketX }} />
+      <div className="basket-container" style={{ left: basketX }}>
+        <img src={chestImage} className="basket" />
+        <img src={chestBottomImage} className="basket-bottom" />
+      </div>
+      {/*<img src={chestImage} className="basket" style={{ left: basketX }} />*/}
 
       {/* STONES */}
       {stones.map(s => (
@@ -220,7 +225,7 @@ const stoneImages: Record<StoneType, string> = {
   amethist: "/images/amethist.png",
 };
 
-const basketImage = "/images/mand.png";
+const chestImage = "/images/mand.png";
 
 
 const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
