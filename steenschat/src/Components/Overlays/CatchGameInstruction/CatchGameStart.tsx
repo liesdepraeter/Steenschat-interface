@@ -1,15 +1,17 @@
+import {stoneByName, type StoneType} from '../../../data/stones';
 import ScoreInstruction from '../../Instruction/CatchGame/ScoreInstruction'
 import Circle from '../../Circle/Circle';
 import IconArrow from '../../Icons/IconArrow'
 import NavigationIntstruction from '../../Instruction/NavigationIntstruction';
 import'./CatchGameStart.css'
 
-type GameVariant = 'rozenkwarts' | 'citrien' | 'aventurijn' | 'obsidiaan' | 'amethist';
+{/*type GameVariant = 'rozenkwarts' | 'citrien' | 'aventurijn' | 'obsidiaan' | 'amethist';*/}
 
 interface CatchGameProps {
-    variant?: GameVariant;
+    variant?: StoneType;
     onStart?: () => void;
 }
+{/*variant?: GameVariant;*/}
 
 function CatchGameStart({variant='rozenkwarts', onStart} : CatchGameProps) {
 

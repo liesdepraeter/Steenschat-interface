@@ -1,36 +1,46 @@
+import {stoneByName, allStoneTypes, type StoneType} from '../../../data/stones';
 import './ScoreInstruction.css'
 
 type ScoreVariant = '+1' | '-1';
-type GameVariant = 'rozenkwarts' | 'citrien' | 'aventurijn' | 'obsidiaan' | 'amethist';
+{/*type GameVariant = 'rozenkwarts' | 'citrien' | 'aventurijn' | 'obsidiaan' | 'amethist';*/}
 
 interface ScoreProps {
   score?: ScoreVariant; 
-  variant?: GameVariant;
+  variant?: StoneType;
 }
+{/*variant?: GameVariant;*/}
 
-const stoneImagePaths: Record<GameVariant, string> = {
+{/*const stoneImagePaths: Record<GameVariant, string> = {
     'rozenkwarts': '/images/rozenkwarts.png',
     'citrien': '/images/citrien.png',
     'aventurijn': '/images/aventurijn.png',
     'obsidiaan': '/images/obsidiaan.png',
     'amethist': '/images/amethist.png',
-};
+};*/}
 
-const getOtherStonePaths = (currentVariant: GameVariant): string[] => {
+{/*const getOtherStonePaths = (currentVariant: GameVariant): string[] => {
     return (Object.keys(stoneImagePaths) as GameVariant[])
         .filter(variantName => variantName !== currentVariant)
         .map(variantName => stoneImagePaths[variantName])
         .slice(0, 4); 
+};*/}
+const getOtherStonePaths = (current: StoneType): string[] => {
+  return allStoneTypes
+    .filter(type => type !== current)
+    .map(type => stoneByName[type].img)
+    .slice(0, 4); // neem er 4 (zoals je originele code)
 };
 
+
 const ScoreInstruction: React.FC<ScoreProps> = ({ score, variant = 'rozenkwarts' }) => {
+    const currentStone = stoneByName[variant];
 
     let imageContent;
     if (score === '+1') {
-        const currentStonePath = stoneImagePaths[variant];
+        {/*const currentStonePath = stoneImagePaths[variant];*/}
         imageContent = (
             <div className='img__stones'>
-                <img className='stones__stone' src={currentStonePath} alt={variant} />
+                <img className='stones__stone' src={currentStone.img} alt={currentStone.name} /> {/*currentStonePath*/}{/*variant*/}
             </div>
         );
     } else {

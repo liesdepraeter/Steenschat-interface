@@ -199,12 +199,12 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
       {stones.map(s => (
         <img
           key={s.id}
-          src={stoneByName[s.type].img} {/*stoneImages[s.type]*/}
+          src={stoneByName[s.type].img}
           className="stone"
           style={{ left: s.x, top: s.y }}
         />
-      ))}
-    </div>
+      ))} {/*src=stoneImages[s.type]*/}
+    </div> 
   );
 };
 
