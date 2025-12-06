@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useGameState } from "../Context/GameStateContext";
 import { stoneByName, allStoneTypes, type StoneType } from "../data/stones";
-{/*import type { CircleColor } from "../Components/Circle/Circle";*/}
 import "./CatchGame.css";
 import Circle from "../Components/Circle/Circle";
 import CatchGameStart from "../Components/Overlays/CatchGameInstruction/CatchGameStart";
@@ -10,29 +9,11 @@ import Succes from "../Components/Overlays/Succes/Succes";
 const chestImage = "/images/treasure-chest-img.png";
 const chestBottomImage = "/images/treasure-chest-img--bottom.png";
 
-{/*const variantColors: Record<StoneType, CircleColor> = {
-  rozenkwarts: "red",
-  citrien: "orange",
-  aventurijn: "lemon",
-  obsidiaan: "blue",
-  amethist: "purple",
-};
 
-type StoneType = "rozenkwarts" | "citrien" | "aventurijn" | "obsidiaan" | "amethist";*/}
 
 interface CatchGameProps {
   variant?: StoneType;
 }
-
-{/*const stoneImages: Record<StoneType, string> = {
-  rozenkwarts: "/images/rozenkwarts.png",
-  citrien: "/images/citrien.png",
-  aventurijn: "/images/aventurijn.png",
-  obsidiaan: "/images/obsidiaan.png",
-  amethist: "/images/amethist.png",
-};*/}
-
-
 
 interface FallingStone {
   id: number;
@@ -97,7 +78,6 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
       if (!containerRef.current) return;
 
       const containerWidth = containerRef.current.clientWidth;
-      {/*const types: StoneType[] = ["rozenkwarts", "citrien", "aventurijn", "obsidiaan", "amethist"];*/}
       const randomType = allStoneTypes[Math.floor(Math.random() * allStoneTypes.length)];
 
       const newStone: FallingStone = {
@@ -106,7 +86,7 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
         y: 0,
         speed: 2 + Math.random() * 2,
         type: randomType, 
-      }; {/*types[Math.floor(Math.random() * types.length)]   -> randomType,*/}
+      }; 
 
       setStones(prev => [...prev, newStone]);
     }, 900);
@@ -193,7 +173,6 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
         <img src={chestImage} className="basket" />
         <img src={chestBottomImage} className="basket-bottom" />
       </div>
-      {/*<img src={chestImage} className="basket" style={{ left: basketX }} />*/}
 
       {/* STONES */}
       {stones.map(s => (
@@ -203,7 +182,7 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
           className="stone"
           style={{ left: s.x, top: s.y }}
         />
-      ))} {/*src=stoneImages[s.type]*/}
+      ))}
     </div> 
   );
 };

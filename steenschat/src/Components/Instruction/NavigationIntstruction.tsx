@@ -4,7 +4,6 @@ import './NavigationInstruction.css'
 import IconArrow from '../Icons/IconArrow'
 
 type Color = 'blue' | 'white';
-{/*type StoneVariant = 'rozenkwarts' | 'citrien' | 'aventurijn' | 'obsidiaan' | 'amethist';*/}
 type Index = 'default' | 'high';
 
 interface InstructionProps {
@@ -12,16 +11,8 @@ interface InstructionProps {
   variant?: StoneType;
   index?: Index;
 }
-{/*variant?: StoneVariant;*/}
 
 const NavigationIntstruction: React.FC<InstructionProps> = ({ index='default', color, variant='rozenkwarts' }) => {
-  {/*const gameMap: Record<StoneVariant, string> = {
-    rozenkwarts: 'catchgame',
-    citrien: 'searchgame',
-    aventurijn: 'catchgame',
-    amethist: 'catchgame',
-    obsidiaan: 'catchgame',
-  };*/}
 
   const navigate = useNavigate();
 
@@ -32,7 +23,6 @@ const NavigationIntstruction: React.FC<InstructionProps> = ({ index='default', c
   const handleNext = () => {
     const stone = stoneByName[variant];
     const game = stone.game;
-    {/*const game = gameMap[variant] || 'catchgame';*/}
     navigate(`/${variant}/${game}`);
   }
 

@@ -1,13 +1,11 @@
+import {type StoneType} from '../../../data/stones';
 import './SearchGameStart.css'
 import NavigationIntstruction from "../../Instruction/NavigationIntstruction";
 import IconArrow from '../../Icons/IconArrow';
 
-
-type GameVariant = 'rozenkwarts' | 'citrien' | 'aventurijn' | 'obsidiaan' | 'amethist';
-
 interface SearchGameProps {
-    variant?: GameVariant;
-    onStart?: () => void;
+  variant?: StoneType;
+  onStart?: () => void;
 }
 
 function SearchGameStart({variant='rozenkwarts', onStart} : SearchGameProps) {
