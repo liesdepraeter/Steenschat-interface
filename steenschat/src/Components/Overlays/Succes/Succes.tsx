@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import IconArrow from "../../Icons/IconArrow"
 import './Succes.css'
 import { useEffect } from 'react';
+import { useInputController } from '../../../Hooks/useInputController';
 
 
 function Succes() {
@@ -19,6 +20,12 @@ function Succes() {
     return () => clearTimeout(timer);
   }, [navigate, 5000]);
 
+  useInputController({
+      onCommand: () => {
+        navigate('/');
+      },
+      confirmOnAnyPress: true
+    });
 
   return (
     <div className="full-screen-container allert-overlay" onClick={handleClick}>
