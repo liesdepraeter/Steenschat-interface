@@ -54,3 +54,60 @@ video {
 .video-overlay.visible {
   opacity: 1;
 }
+
+
+
+/* Loading message for model */
+.loading-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* Confirmation button container */
+.confirm-button-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Confirmation button */
+.confirm-button {
+  background-color: var(--color-primary, #4CAF50);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: var(--size-radius-base, 10px);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  min-width: 200px;
+}
+
+.confirm-button:hover {
+  background-color: var(--color-primary-dark, #3f9c46);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.confirm-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.confirm-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
