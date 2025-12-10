@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useInactivityTimeout } from './Hooks/useInactivityTimeout';
 import { GameStateProvider, useGameState } from './Context/GameStateContext';
 
@@ -17,17 +17,51 @@ function App() {
 
   const AppContent = () => {
     const { showAlert, resetTimers } = useInactivityTimeout();
-    const { setIsPaused, setShowStart, hasStarted } = useGameState();
+    const { setIsPaused, showStart, hasStarted, setShowStart, setHasStarted } = useGameState();
+    const startOverlayWasVisibleRef = useRef(false);
+    const wasPlayingRef = useRef(false);
+    const alertWasActiveRef = useRef(false);
 
+    // Blokkeer globale input zodra de alert zichtbaar is, hef op wanneer hij verdwijnt
     useEffect(() => {
-      setIsPaused(showAlert);
-    }, [showAlert, setIsPaused]);
+      (window as any).__inputBlocked = showAlert;
+      return () => {
+        (window as any).__inputBlocked = false;
+      };
+    }, [showAlert]);
 
     useEffect(() => {
       if (showAlert) {
-        setShowStart(false);
+        if (!alertWasActiveRef.current) {
+          // Eerste keer dat deze alert zichtbaar wordt: staat vastleggen
+          startOverlayWasVisibleRef.current = showStart;
+          wasPlayingRef.current = hasStarted && !showStart;
+          alertWasActiveRef.current = true;
+        }
+
+        // Pauzeer en verberg start-overlay terwijl alert zichtbaar is
+        setIsPaused(true);
+        if (showStart) setShowStart(false);
+      } else {
+        if (alertWasActiveRef.current) {
+          // Alert gesloten: herstel eerdere toestand
+          if (startOverlayWasVisibleRef.current) {
+            setShowStart(true);
+            setHasStarted(false); // start-overlay forceert opnieuw starten
+            setIsPaused(true);    // blijf gepauzeerd tot gebruiker start
+          } else if (wasPlayingRef.current) {
+            setHasStarted(true);
+            setIsPaused(false);   // hervat spel
+          } else {
+            // Geen start-overlay en niet spelend (bijv. fact/home): gewoon unpause
+            setIsPaused(false);
+          }
+
+          // Reset alert flag zodat volgende alert opnieuw kan vastleggen
+          alertWasActiveRef.current = false;
+        }
       }
-    }, [showAlert, setShowStart]);
+    }, [showAlert, showStart, hasStarted, setHasStarted, setIsPaused, setShowStart]);
 
     /* RESET fallback */
     const navigate = useNavigate();
@@ -67,10 +101,8 @@ function App() {
       </Routes>
 
       {showAlert && <Allert onPress={() => {
-        resetTimers(); 
-        if (!hasStarted) {
-          setShowStart(true);
-        };
+        resetTimers();
+        // Effect boven pakt verdere herstel-logica wanneer showAlert weer false wordt
       }}
       />}
       </>

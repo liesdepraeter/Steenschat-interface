@@ -55,6 +55,17 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
   const [score, setScore] = useState(0);
   const [stones, setStones] = useState<FallingStone[]>([]);
 
+  // Reset state on mount so de start-overlay altijd beschikbaar is bij binnenkomen
+  useEffect(() => {
+    setShowStart(true);
+    setHasStarted(false);
+    setShowSuccess(false);
+    setIsPaused(true);
+    caughtStonesRef.current.clear();
+    setScore(0);
+    setStones([]);
+  }, [setShowStart, setHasStarted, setShowSuccess, setIsPaused]);
+
   // ---SOUNDS ---
   useEffect(() => {
     correctSoundRef.current = new Audio("/sounds/correct.mp3");

@@ -7,18 +7,24 @@ interface UseInputControllerProps {
   onCommand: (cmd: InputCommand) => void;
   confirmOnAnyPress?: boolean; 
   onReset?: () => void;        // callback voor reset
+  allowWhenBlocked?: boolean;  // laat input door als globale block actief is
 }
 
 export function useInputController({
   onCommand,
   confirmOnAnyPress = false,
   onReset,
+  allowWhenBlocked = false,
 }: UseInputControllerProps) {
 
   const [pressedKeys, setPressedKeys] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Globale blokker: andere listeners worden genegeerd wanneer een overlay actief is
+      // tenzij deze hook expliciet is toegestaan.
+      if ((window as any).__inputBlocked && !allowWhenBlocked) return;
+
       e.preventDefault();
 
       setPressedKeys(prev => {
@@ -61,5 +67,5 @@ export function useInputController({
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [onCommand, confirmOnAnyPress, onReset, pressedKeys]);
+  }, [onCommand, confirmOnAnyPress, onReset, allowWhenBlocked, pressedKeys]);
 }
