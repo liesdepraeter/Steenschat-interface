@@ -80,8 +80,12 @@ import { playStoneSound } from "./playStoneSound";
 import './WebCamViewer.css';
 import IconCamera from '../Icons/IconCamera';
 
+interface WebcamViewerProps {
+  onNoStoneError: () => void;
+}
 
-const WebcamViewer: React.FC = () => {
+
+const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(true);
@@ -164,6 +168,16 @@ const WebcamViewer: React.FC = () => {
     setShowConfirmButton(false);
   };
 
+  const handleExternalTrigger = () => {
+    //Indien steen niet gedetecteerd -> error doorgeven aan Home
+    if (!detectedStone) {
+      onNoStoneError();
+      return;
+    }
+    // Indien steen wél gedetecteerd → doe normale confirm logica
+    handleConfirm();
+  };
+
   const displayName = detectedStone
     ? detectedStone.charAt(0).toUpperCase() + detectedStone.slice(1)
     : '';
@@ -202,7 +216,7 @@ const WebcamViewer: React.FC = () => {
             onClick={handleConfirm}
             disabled={!detectedStone}
           >
-            Bevestig: {displayName}
+            {displayName}
           </button>
           {/* <p className="confidence-text">Zekerheid: {Math.round(confidence * 100)}%</p> */}
         </div>

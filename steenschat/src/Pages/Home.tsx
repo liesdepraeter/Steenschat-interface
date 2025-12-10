@@ -41,7 +41,7 @@ function Home() {
         <Error onClearError={clearError}/>
       ) : (
       <div className='full-screen-container container--home'>
-        <WebcamViewer/>
+        <WebcamViewer onNoStoneError={triggerError}/>
         <PushButtonInstruction/>
       </div>)}
       <Circle size='small' color='green'/>
