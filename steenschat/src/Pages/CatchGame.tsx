@@ -22,6 +22,7 @@ interface FallingStone {
   y: number;
   speed: number;
   type: StoneType;
+  caught?: boolean;
 }
 
 const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
@@ -39,6 +40,9 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number>(0);
+  const correctSoundRef = useRef<HTMLAudioElement | null>(null);
+  const wrongSoundRef = useRef<HTMLAudioElement | null>(null);
+  const caughtStonesRef = useRef<Set<number>>(new Set());
 
   // sizes
   const basketWidth = 130;
@@ -52,8 +56,6 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
   const [stones, setStones] = useState<FallingStone[]>([]);
 
   // ---SOUNDS ---
-  const correctSoundRef = useRef<HTMLAudioElement | null>(null);
-  const wrongSoundRef = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {
     correctSoundRef.current = new Audio("/sounds/correct.mp3");
     wrongSoundRef.current = new Audio("/sounds/wrong.wav");
@@ -105,40 +107,40 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
 
   // --- GAME LOOP ---
   const gameLoop = () => {
-    if (isPaused || !hasStarted || showSuccess || !containerRef.current) return;
+    if (isPaused || !hasStarted || showSuccess || !containerRef.current) {
+      return;
+    }
 
     const containerHeight = containerRef.current.clientHeight;
+    const bottom = containerHeight - basketHeight;
 
     setStones(prev =>
       prev
         .map(s => ({ ...s, y: s.y + s.speed }))
         .filter(stone => {
-          const bottom = containerHeight - basketHeight;
-
           if (stone.y + stoneWidth >= bottom) {
             const caught =
               stone.x + stoneWidth > basketXRef.current &&
               stone.x < basketXRef.current + basketWidth;
 
-            if (caught) {
-              setScore(sc => {
-                if (stone.type === variant) {
-                  correctSoundRef.current?.play();
-                } else {
-                  wrongSoundRef.current?.play();
-                }
-
-                const newScore = stone.type === variant ? sc + 1 : Math.max(0, sc - 1);
-
-                if (newScore >= 10) {
-                  setIsPaused(true);
-                  setShowSuccess(true);
-                }
-
-                return newScore;
-              });
+            if (caught && !caughtStonesRef.current.has(stone.id)) {
+              caughtStonesRef.current.add(stone.id);
+              
+              if (stone.type === variant) {
+                correctSoundRef.current?.play();
+                setScore(sc => {
+                  const newScore = sc + 1;
+                  if (newScore >= 10) {
+                    setIsPaused(true);
+                    setShowSuccess(true);
+                  }
+                  return newScore;
+                });
+              } else {
+                wrongSoundRef.current?.play();
+                setScore(sc => Math.max(0, sc - 1));
+              }
             }
-
             return false;
           }
           return true;
@@ -203,32 +205,3 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
 };
 
 export default CatchGame;
-
-
-
-
-{/*import React, { useEffect, useRef, useState } from "react";
-import "./CatchGame.css";
-import Circle from "../Components/Circle/Circle";
-
-type StoneType = "rozenkwarts" | "citrien" | "aventurijn" | "obsidiaan" | "amethist";
-
-interface CatchGameProps {
-  variant?: StoneType;
-}
-
-const stoneImages: Record<StoneType, string> = {
-  rozenkwarts: "/images/rozenkwarts.png",
-  citrien: "/images/citrien.png",
-  aventurijn: "/images/aventurijn.png",
-  obsidiaan: "/images/obsidiaan.png",
-  amethist: "/images/amethist.png",
-};
-
-const chestImage = "/images/mand.png";
-
-
-const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
-
-}
-export default CatchGame;*/}
