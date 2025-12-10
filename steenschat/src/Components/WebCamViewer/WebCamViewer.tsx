@@ -75,9 +75,11 @@ export default WebcamViewer;*/}
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useStoneRecognition } from '../../Hooks/useStoneRecognition';
+import { playStoneSound } from "./playStoneSound";
 import './WebCamViewer.css';
 import IconCamera from '../Icons/IconCamera';
-import { useStoneRecognition } from '../../Hooks/useStoneRecognition';
+
 
 const WebcamViewer: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -151,16 +153,6 @@ const WebcamViewer: React.FC = () => {
     }
   }, [errorMessage, detectedStone]);
 
-  const playStoneSound = (stoneName: string) => {
-    try {
-      const audio = new Audio(`/sounds/${stoneName}.mp3`);
-      audio.play().catch((error) => {
-        console.warn('Kon geluid niet afspelen:', error);
-      });
-    } catch (error) {
-      console.warn('Kon geluid niet laden:', error);
-    }
-  };
 
   const handleConfirm = () => {
     if (!detectedStone) return;
