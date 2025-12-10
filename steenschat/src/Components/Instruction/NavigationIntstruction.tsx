@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import {type StoneType, stoneByName} from '../../data/stones';
 import './NavigationInstruction.css'
 import IconArrow from '../Icons/IconArrow'
+import { useInputController } from '../../Hooks/useInputController';
 
 type Color = 'blue' | 'white';
 type Index = 'default' | 'high';
@@ -25,6 +26,14 @@ const NavigationIntstruction: React.FC<InstructionProps> = ({ index='default', c
     const game = stone.game;
     navigate(`/${variant}/${game}`);
   }
+
+  useInputController({
+    onCommand: (cmd) => {
+      if (cmd === 'left') handleBack();
+      if (cmd === 'right') handleNext();
+    },
+    confirmOnAnyPress: false,
+  });
 
   const textClass = color === 'white' ? 'text--reverse' : '';
 

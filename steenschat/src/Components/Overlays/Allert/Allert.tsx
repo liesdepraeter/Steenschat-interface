@@ -1,3 +1,4 @@
+import { useInputController } from '../../../Hooks/useInputController';
 import IconArrow from '../../Icons/IconArrow'
 import './Allert.css'
 
@@ -6,6 +7,14 @@ interface AllertProps {
 }
 
 function Allert({ onPress }: AllertProps) {
+
+  useInputController({
+    onCommand: () => {
+      onPress();
+    },
+    confirmOnAnyPress: true
+  });
+
   return (
     <div className='full-screen-container allert-overlay' onClick={(e) => {
       e.stopPropagation(); 

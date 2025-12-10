@@ -2,6 +2,7 @@ import {type StoneType} from '../../../data/stones';
 import './SearchGameStart.css'
 import NavigationIntstruction from "../../Instruction/NavigationIntstruction";
 import IconArrow from '../../Icons/IconArrow';
+import { useInputController } from '../../../Hooks/useInputController';
 
 interface SearchGameProps {
   variant?: StoneType;
@@ -13,6 +14,14 @@ function SearchGameStart({variant='rozenkwarts', onStart} : SearchGameProps) {
     const handleOverlayClick = () => {
         onStart?.();
     };
+
+    useInputController({
+      onCommand: (cmd) => {
+        if(cmd === 'right') onStart?.();
+        if(cmd === 'left') console.log("eventueel terug of andere actie");
+      },
+      confirmOnAnyPress: false
+    });
 
   return (
     <div className='full-screen-container overlay--search' onClick={handleOverlayClick}>

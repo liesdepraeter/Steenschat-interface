@@ -4,6 +4,7 @@ import Circle from '../../Circle/Circle';
 import IconArrow from '../../Icons/IconArrow'
 import NavigationIntstruction from '../../Instruction/NavigationIntstruction';
 import'./CatchGameStart.css'
+import { useInputController } from '../../../Hooks/useInputController';
 
 
 interface CatchGameProps {
@@ -16,6 +17,14 @@ function CatchGameStart({variant='rozenkwarts', onStart} : CatchGameProps) {
   const handleOverlayClick = () => {
     onStart?.();
   };
+
+   useInputController({
+    onCommand: (cmd) => {
+      if(cmd === 'right') onStart?.(); 
+      if(cmd === 'left') console.log("eventueel terug of andere actie");
+    },
+    confirmOnAnyPress: false
+  });
 
   return (
     <div className='full-screen-container overlay-start' onClick={handleOverlayClick}>
