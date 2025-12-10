@@ -22,7 +22,7 @@ const POSITIONS: Record<StoneType, { left: string; top: string }> = {
 };
 
 const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
-  const {isPaused, showStart, showSuccess, hasStarted, setIsPaused, setShowStart, setShowSuccess, setHasStarted} = useGameState();
+  const { showStart, showSuccess, hasStarted, setIsPaused, setShowStart, setHasStarted} = useGameState();
 
   const [found, setFound] = useState(window.location.hash === '#found');
 

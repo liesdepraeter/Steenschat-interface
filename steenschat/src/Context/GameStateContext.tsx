@@ -12,6 +12,7 @@ interface GameStateContextType {
 
   hasStarted: boolean;
   setHasStarted: (value: boolean) => void;
+
 }
 
 const GameStateContext = createContext<GameStateContextType | undefined>(undefined);

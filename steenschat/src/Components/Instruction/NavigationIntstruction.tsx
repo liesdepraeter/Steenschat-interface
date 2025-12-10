@@ -4,6 +4,7 @@ import './NavigationInstruction.css'
 import IconArrow from '../Icons/IconArrow'
 import { useInputController } from '../../Hooks/useInputController';
 
+
 type Color = 'blue' | 'white';
 type Index = 'default' | 'high';
 

@@ -23,7 +23,7 @@ function CatchGameStart({variant='rozenkwarts', onStart} : CatchGameProps) {
       if(cmd === 'right') onStart?.(); 
       if(cmd === 'left') console.log("eventueel terug of andere actie");
     },
-    confirmOnAnyPress: false
+    confirmOnAnyPress: false,
   });
 
   return (

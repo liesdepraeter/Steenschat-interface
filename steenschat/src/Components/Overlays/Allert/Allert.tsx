@@ -12,7 +12,7 @@ function Allert({ onPress }: AllertProps) {
     onCommand: () => {
       onPress();
     },
-    confirmOnAnyPress: true
+    confirmOnAnyPress: true,
   });
 
   return (

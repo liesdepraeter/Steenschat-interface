@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 
-const ALERT_TIMEOUT = 30000; //30s
+const ALERT_TIMEOUT = 3000; //30s
 const RETURN_HOME_TIMEOUT = 10000; //10s
 
 export const useInactivityTimeout = () => {

@@ -70,7 +70,7 @@ function App() {
         resetTimers(); 
         if (!hasStarted) {
           setShowStart(true);
-        }
+        };
       }}
       />}
       </>

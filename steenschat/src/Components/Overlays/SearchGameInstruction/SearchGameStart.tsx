@@ -11,17 +11,17 @@ interface SearchGameProps {
 
 function SearchGameStart({variant='rozenkwarts', onStart} : SearchGameProps) {
     
-    const handleOverlayClick = () => {
-        onStart?.();
-    };
+  const handleOverlayClick = () => {
+    onStart?.();
+  };
 
-    useInputController({
-      onCommand: (cmd) => {
-        if(cmd === 'right') onStart?.();
-        if(cmd === 'left') console.log("eventueel terug of andere actie");
-      },
-      confirmOnAnyPress: false
-    });
+  useInputController({
+    onCommand: (cmd) => {
+      if(cmd === 'right') onStart?.();
+      if(cmd === 'left') console.log("eventueel terug of andere actie");
+    },
+    confirmOnAnyPress: false,
+  });
 
   return (
     <div className='full-screen-container overlay--search' onClick={handleOverlayClick}>
