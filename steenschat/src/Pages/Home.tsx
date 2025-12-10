@@ -49,11 +49,11 @@ function Home() {
       <Circle size='large' color='yellow'/>
 
       {/* Tijdelijke knop om de fout te testen. */}
-      {!isErrorActive && (
+      {/*{!isErrorActive && (
         <button onClick={triggerError} style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
           Simuleer Fout
         </button>
-      )}
+      )}*/}
     </>
   )
 }

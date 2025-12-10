@@ -76,6 +76,7 @@ export default WebcamViewer;*/}
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStoneRecognition } from '../../Hooks/useStoneRecognition';
+import { useInputController } from "../../Hooks/useInputController";
 import { playStoneSound } from "./playStoneSound";
 import './WebCamViewer.css';
 import IconCamera from '../Icons/IconCamera';
@@ -177,6 +178,13 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
     // Indien steen wél gedetecteerd → doe normale confirm logica
     handleConfirm();
   };
+
+  useInputController({
+    confirmOnAnyPress: true,
+    onCommand: (cmd) => {
+      if (cmd === "confirm") handleExternalTrigger();
+    }
+  });
 
   const displayName = detectedStone
     ? detectedStone.charAt(0).toUpperCase() + detectedStone.slice(1)
