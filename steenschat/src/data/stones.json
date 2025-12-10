@@ -1,40 +1,40 @@
 [
   {
     "name": "rozenkwarts",
-    "img": "/images/rozenkwarts.png",
-    "sound": "/sounds/rozenkwarts.mp3",
+    "img": "/images/stones/rozenkwarts.png",
+    "sound": "/sounds/stones/rozenkwarts.mp3",
     "color": "red",
     "fact": "Rozenkwarts is, na water en ijs, het meest voorkomende mineraal op aarde",
     "game": "catchgame"
   },
   {
     "name": "citrien",
-    "img": "/images/citrien.png",
-    "sound": "/sounds/citrien.mp3",
+    "img": "/images/stones/citrien.png",
+    "sound": "/sounds/stones/citrien.mp3",
     "color": "orange",
     "fact": "Citrien zeldzaam is in de natuur, en vaak wordt nagemaakt door verhitte amethist die geel is geworden",
     "game": "catchgame"
   },
   {
     "name": "aventurijn",
-    "img": "/images/aventurijn.png",
-    "sound": "/sounds/aventurijn.mp3",
+    "img": "/images/stones/aventurijn.png",
+    "sound": "/sounds/stones/aventurijn.mp3",
     "color": "lemon",
     "fact": "Aventurijn een van de hardste mineralen is op aarde, hij wordt daarom vaak gebruikt voor sieraden",
     "game": "searchgame"
   },
   {
     "name": "obsidiaan",
-    "img": "/images/obsidiaan.png",
-    "sound": "/sounds/obsidiaan.mp3",
+    "img": "/images/stones/obsidiaan.png",
+    "sound": "/sounds/stones/obsidiaan.mp3",
     "color": "blue",
     "fact": "Obsidiaan eigenlijk snel afgekoelde, natuurlijke vulkanisch glas is",
     "game": "searchgame"
   },
   {
     "name": "amethist",
-    "img": "/images/amethist.png",
-    "sound": "/sounds/amethist.mp3",
+    "img": "/images/stones/amethist.png",
+    "sound": "/sounds/stones/amethist.mp3",
     "color": "purple",
     "fact": "De paarse kleur van amethist ontstaat door een mix van ijzer en natuurlijke straling in de aarde",
     "game": "searchgame"

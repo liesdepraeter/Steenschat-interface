@@ -51,6 +51,14 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
   const [score, setScore] = useState(0);
   const [stones, setStones] = useState<FallingStone[]>([]);
 
+  // ---SOUNDS ---
+  const correctSoundRef = useRef<HTMLAudioElement | null>(null);
+  const wrongSoundRef = useRef<HTMLAudioElement | null>(null);
+  useEffect(() => {
+    correctSoundRef.current = new Audio("/sounds/correct.mp3");
+    wrongSoundRef.current = new Audio("/sounds/wrong.wav");
+  }, []);
+
   // --- KEYBOARD ---
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -114,6 +122,12 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
 
             if (caught) {
               setScore(sc => {
+                if (stone.type === variant) {
+                  correctSoundRef.current?.play();
+                } else {
+                  wrongSoundRef.current?.play();
+                }
+
                 const newScore = stone.type === variant ? sc + 1 : Math.max(0, sc - 1);
 
                 if (newScore >= 10) {
