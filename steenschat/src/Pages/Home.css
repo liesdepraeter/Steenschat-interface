@@ -5,6 +5,7 @@
     flex-direction: column;
     //padding: 64px;
     padding: 32px;
+    overflow: hidden;
 }
 
 .container--home {

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react';
 import { useInactivityTimeout } from './Hooks/useInactivityTimeout';
 import { GameStateProvider, useGameState } from './Context/GameStateContext';
@@ -10,6 +10,7 @@ import CatchGame from './Pages/CatchGame'
 import SearchGame from './Pages/SearchGame'
 import Allert from './Components/Overlays/Allert/Allert'
 import SearchGameStart from './Components/Overlays/SearchGameInstruction/SearchGameStart';
+import { useInputController } from './Hooks/useInputController';
 
 
 function App() {
@@ -27,6 +28,14 @@ function App() {
         setShowStart(false);
       }
     }, [showAlert, setShowStart]);
+
+    /* RESET fallback */
+    const navigate = useNavigate();
+    useInputController({
+      confirmOnAnyPress: true,
+      onCommand: (cmd) => console.log(cmd),
+      onReset: () => navigate('/'),
+    });
 
     return (
       <>

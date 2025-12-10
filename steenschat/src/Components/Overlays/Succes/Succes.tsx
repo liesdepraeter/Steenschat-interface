@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import IconArrow from "../../Icons/IconArrow"
 import './Succes.css'
+import { useEffect } from 'react';
 
 
 function Succes() {
@@ -9,6 +10,14 @@ function Succes() {
   const handleClick = () => {
     navigate('/');
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/');
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [navigate, 5000]);
 
 
   return (

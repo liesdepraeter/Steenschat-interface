@@ -1,6 +1,6 @@
 .error-overlay {
     background-color: var(--color-overlay);
-    position: relative;
+    position: fixed;
     z-index: 2;
     //padding: 64px;
 

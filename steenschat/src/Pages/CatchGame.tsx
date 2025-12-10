@@ -6,6 +6,7 @@ import Circle from "../Components/Circle/Circle";
 import CatchGameStart from "../Components/Overlays/CatchGameInstruction/CatchGameStart";
 import Succes from "../Components/Overlays/Succes/Succes";
 
+
 const chestImage = "/images/treasure-chest-img.png";
 const chestBottomImage = "/images/treasure-chest-img--bottom.png";
 
