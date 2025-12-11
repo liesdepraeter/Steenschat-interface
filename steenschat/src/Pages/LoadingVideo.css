@@ -1,9 +1,17 @@
-.video-page {
+.loading-video-container {
+    padding: 0;
+}
+
+/*.video-page {
   position: fixed;
   inset: 0;
   overflow: hidden;
   background: black;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}*/
+
 
 .loading-video {
   width: 100%;

@@ -1,11 +1,12 @@
 import { useEffect, useRef } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import "./LoadingVideo.css";
 
 export default function LoadingVideo() {
   const navigate = useNavigate();
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  // Variant ophalen dat Home heeft meegegeven via navigate state
+  // We halen de steen-variant op via navigation state
   const location = useLocation();
   const variant = location.state?.variant || "rozenkwarts";
 
@@ -14,7 +15,7 @@ export default function LoadingVideo() {
     if (!video) return;
 
     const handleEnded = () => {
-      navigate(`/fact/${variant}`);
+      navigate(`/${variant}/fact`);
     };
 
     video.addEventListener("ended", handleEnded);
@@ -22,12 +23,11 @@ export default function LoadingVideo() {
   }, [navigate, variant]);
 
   return (
-    <div className="video-page">
+    <div className="full-screen-container loading-video-container">
       <video
         ref={videoRef}
-        src="/video/Stonefiche.mp4"
+        src="/video/stonefiche.mp4"
         autoPlay
-        muted
         playsInline
         className="loading-video"
       />

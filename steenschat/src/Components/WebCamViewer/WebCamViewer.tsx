@@ -167,7 +167,7 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
     
     // Eerst naar loading video
     {/*navigate(`/${detectedStone}/fact`);*/}
-    navigate("/loading-video", {state: {variant: detectedStone} });
+    navigate("/scanning", {state: {variant: detectedStone} });
     setShowConfirmButton(false);
   };
 
@@ -195,7 +195,7 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
 
   return (
     <div className="video-container">
-      <video ref={videoRef} autoPlay playsInline muted />
+      <video className='video--small' ref={videoRef} autoPlay playsInline muted />
 
       {/* Toon de algemene foutmelding indien aanwezig */}
       {errorMessage && (
