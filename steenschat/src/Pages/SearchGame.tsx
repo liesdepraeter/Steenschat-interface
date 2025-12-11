@@ -13,25 +13,41 @@ interface SearchGameProps {
   variant?: StoneType;
 }
 
-const POSITIONS: Record<StoneType, { left: string; top: string }> = {
-  amethist: { left: '30%', top: '55%' },
-  rozenkwarts: { left: '65%', top: '28%' },
-  citrien: { left: '12%', top: '72%' },
-  aventurijn: { left: '72%', top: '62%' },
-  obsidiaan: { left: '45%', top: '18%' },
+// Oorspronkelijke vaste posities (niet meer gebruikt, vervangen door random):
+// const POSITIONS: Record<StoneType, { left: string; top: string }> = {
+//   amethist: { left: '30%', top: '55%' },
+//   rozenkwarts: { left: '65%', top: '28%' },
+//   citrien: { left: '12%', top: '72%' },
+//   aventurijn: { left: '72%', top: '62%' },
+//   obsidiaan: { left: '45%', top: '18%' },
+// };
+
+// Helper functie voor random positie met marges
+const getRandomPosition = (): { left: string; top: string } => {
+  // Marges van 15% aan alle kanten zodat stenen niet op de rand staan
+  const minPercent = 15;
+  const maxPercent = 85;
+  
+  const randomLeft = Math.random() * (maxPercent - minPercent) + minPercent;
+  const randomTop = Math.random() * (maxPercent - minPercent) + minPercent;
+  
+  return {
+    left: `${randomLeft}%`,
+    top: `${randomTop}%`,
+  };
 };
 
 const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
   const { showStart, showSuccess, hasStarted, setIsPaused, setShowStart, setHasStarted} = useGameState();
 
   const [found, setFound] = useState(window.location.hash === '#found');
+  // State voor random positie
+  const [stonePos, setStonePos] = useState(() => getRandomPosition());
 
   const stone = stoneByName[variant];
   const imageSrc = stone.img;
-  const pos = POSITIONS[variant] || {
-    left: "50%",
-    top: "50%",
-  };
+  // Gebruik random positie in plaats van vaste POSITIONS
+  const pos = stonePos;
 
   useEffect(() => {
     const onHash = () => {
@@ -41,6 +57,13 @@ const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
+
+  // Update positie wanneer een nieuw spel start
+  useEffect(() => {
+    if (hasStarted) {
+      setStonePos(getRandomPosition());
+    }
+  }, [hasStarted]);
 
   return (
     <div className="full-screen-container">
