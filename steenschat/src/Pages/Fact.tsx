@@ -1,7 +1,10 @@
 import { type StoneType, stoneByName } from '../data/stones'
+import { playStoneSound } from "../Components/WebCamViewer/playStoneSound";
+
 import'./Fact.css'
 import Circle from '../Components/Circle/Circle'
 import NavigationIntstruction from '../Components/Instruction/NavigationIntstruction'
+import { useEffect } from 'react';
 
 
 interface FactProps {
@@ -15,6 +18,10 @@ function Fact({stone='rozenkwarts'} : FactProps) {
 
   const textShouldReverse = ["rozenkwarts", "citrien", "obsidiaan"].includes(stone);
   const textColor = textShouldReverse ? "text--reverse" : "";
+
+  useEffect(() => {
+    playStoneSound(stone);
+  }, [stone]);
 
   return (
     <>

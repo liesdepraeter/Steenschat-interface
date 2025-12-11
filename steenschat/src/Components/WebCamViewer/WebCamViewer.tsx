@@ -77,7 +77,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStoneRecognition } from '../../Hooks/useStoneRecognition';
 import { useInputController } from "../../Hooks/useInputController";
-import { playStoneSound } from "./playStoneSound";
+{/*import { playStoneSound } from "./playStoneSound";*/}
 import './WebCamViewer.css';
 import IconCamera from '../Icons/IconCamera';
 
@@ -162,10 +162,12 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
   const handleConfirm = () => {
     if (!detectedStone) return;
     
-    // Play sound associated with the detected stone
-    playStoneSound(detectedStone);
+    // Play sound associated with the detected stone -> naar Fact
+    {/*playStoneSound(detectedStone);*/}
     
-    navigate(`/${detectedStone}/fact`);
+    // Eerst naar loading video
+    {/*navigate(`/${detectedStone}/fact`);*/}
+    navigate("/loading-video", {state: {variant: detectedStone} });
     setShowConfirmButton(false);
   };
 
@@ -186,9 +188,10 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
     }
   });
 
-  const displayName = detectedStone
+  {/*const displayName = detectedStone
     ? detectedStone.charAt(0).toUpperCase() + detectedStone.slice(1)
-    : '';
+    : '';*/}
+
 
   return (
     <div className="video-container">
@@ -224,9 +227,11 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
             onClick={handleConfirm}
             disabled={!detectedStone}
           >
-            {displayName}
+            {/* {displayName} */}
+            Steen gedetecteerd
           </button>
           {/* <p className="confidence-text">Zekerheid: {Math.round(confidence * 100)}%</p> */}
+
         </div>
       )}
     </div>
