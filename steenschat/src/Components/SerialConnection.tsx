@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import './SerialConnection.css'
 
 interface SerialConnectionProps {
   onConnected?: () => void;
@@ -225,19 +226,12 @@ const SerialConnection: React.FC<SerialConnectionProps> = ({ onConnected, onDisc
   return (
     <>
       {!isConnected && (
-        <div style={{ padding: '10px', fontSize: '12px', position: 'fixed', top: 0, right: 0, zIndex: 10000, backgroundColor: '#f0f0f0', borderRadius: '4px' }}>
-          <span style={{ color: 'red' }}>✗ Arduino Disconnected</span>
-          <button
-            onClick={handleConnect}
-            style={{
-              marginLeft: '10px',
-              padding: '5px 10px',
-              cursor: 'pointer',
-            }}
-          >
+        <div className="arduino-status">
+          <span className="arduino-status__text--disconnected">✗ Arduino Disconnected</span>
+          <button className="arduino-status__button" onClick={handleConnect}>
             Connect Arduino
           </button>
-          {error && <div style={{ color: 'orange', marginTop: '5px' }}>{error}</div>}
+          {error && <div className="arduino-status__error">{error}</div>}
         </div>
       )}
     </>

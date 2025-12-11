@@ -1,0 +1,25 @@
+.arduino-status {
+  padding: 10px;
+  font-size: 12px; 
+  position: fixed; 
+  top: 0; 
+  right: 20px; 
+  z-index: 6;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+
+.arduino-status__text--disconnected {
+  color: red;
+}
+
+.arduino-status__button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.arduino-status__error {
+  color: orange;
+  margin-top: 5px;
+}
