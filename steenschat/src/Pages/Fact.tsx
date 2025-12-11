@@ -28,7 +28,7 @@ function Fact({stone='rozenkwarts'} : FactProps) {
       <Circle size='xlarge' color={data.color}/> {/*stoneColors[stone]*/}
 
       <div className='full-screen-container container--fact'>
-        <NavigationIntstruction variant={stone}/>
+        <NavigationIntstruction variant={stone} color='sand'/>
 
         <div className='fact-content'>
           <p className={`fact-content__title title-text ${textColor}`}>{stone}</p>
