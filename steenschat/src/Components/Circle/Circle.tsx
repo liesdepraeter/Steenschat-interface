@@ -80,5 +80,3 @@ const Circle: React.FC<CircleProps> = ({ size, color, text, index = 'default', c
 }
 
 export default Circle
-
-{/*export type { CircleColor};*/}
