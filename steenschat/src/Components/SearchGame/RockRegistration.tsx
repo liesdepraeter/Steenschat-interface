@@ -8,6 +8,8 @@ export default function RockRegistration() {
   const timeoutRef = useRef<number | null>(null);
   const overlayRef = useRef<HTMLImageElement | null>(null);
 
+  const correctSound = new Audio("/sounds/correct.mp3")
+
   useEffect(() => {
     // Poll positions and check containment. Use a short interval to match movement.
     const interval = window.setInterval(() => {
@@ -40,6 +42,10 @@ export default function RockRegistration() {
 
       if (fullyInside) {
         foundRef.current = true;
+        
+        // correct sound
+        correctSound.currentTime = 0;
+        correctSound.play();
 
         // create a centered wrapper and add the checkmark image inside it
         const wrapper = document.createElement("div");

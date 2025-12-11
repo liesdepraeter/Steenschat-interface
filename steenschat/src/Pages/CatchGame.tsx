@@ -141,7 +141,7 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
                 correctSoundRef.current?.play();
                 setScore(sc => {
                   const newScore = sc + 1;
-                  if (newScore >= 10) {
+                  if (newScore >= 5) {
                     setIsPaused(true);
                     setShowSuccess(true);
                   }

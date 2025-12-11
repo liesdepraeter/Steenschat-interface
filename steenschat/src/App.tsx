@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import { useEffect, useRef } from 'react';
 import { useInactivityTimeout } from './Hooks/useInactivityTimeout';
 import { GameStateProvider, useGameState } from './Context/GameStateContext';
+import { useInputController } from './Hooks/useInputController';
+import SerialConnection from './Components/SerialConnection';
 
 import './App.css'
 import Home from './Pages/Home'
@@ -10,7 +12,7 @@ import CatchGame from './Pages/CatchGame'
 import SearchGame from './Pages/SearchGame'
 import Allert from './Components/Overlays/Allert/Allert'
 import SearchGameStart from './Components/Overlays/SearchGameInstruction/SearchGameStart';
-import { useInputController } from './Hooks/useInputController';
+
 
 
 function App() {
@@ -112,6 +114,7 @@ function App() {
   return (
     <BrowserRouter>
       <GameStateProvider> 
+        <SerialConnection/>
         <AppContent />
       </GameStateProvider>
     </BrowserRouter>
