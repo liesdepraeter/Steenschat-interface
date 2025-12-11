@@ -31,10 +31,10 @@ function SearchGameStart({variant='rozenkwarts', onStart} : SearchGameProps) {
         <div className='arrow-wrapper'>
           <IconArrow index='high' size='button' color='red' arrow='white'/>
           <div className='arrow-wrapper__side'>
-            <IconArrow index='high' size='button' color='yellow' arrow='white'/>
+            <IconArrow index='high' size='button' color='blue' arrow='white'/>
             <IconArrow index='high' size='button' color='green' arrow='white'/>
           </div>
-          <IconArrow index='high' size='button' color='blue' arrow='white'/>
+          <IconArrow index='high' size='button' color='yellow' arrow='white'/>
         </div>
       </div>
       

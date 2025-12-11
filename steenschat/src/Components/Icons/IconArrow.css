@@ -30,14 +30,18 @@
 }
 .circle--yellow {
     background-color: var(--color-yellow-dark);
-    rotate: 90deg;
 }
 .circle--blue {
     background-color: var(--color-blue-light);
+    rotate: 90deg;
 }
 
-.arrow {
+.arrow-white {
     stroke: white;
+}
+
+.arrow-sand {
+    stroke: var(--color-background);
 }
 
 .arrow--high {
