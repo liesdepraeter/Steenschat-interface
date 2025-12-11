@@ -36,3 +36,7 @@
 .fact__big-text{
     font-size: var(--size-text-big); //24px
 }
+
+.fact__small-text{
+    text-align: center;
+}

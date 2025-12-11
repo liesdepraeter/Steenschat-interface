@@ -8,3 +8,9 @@ export const stoneByName: Record<StoneType, StoneData> = Object.fromEntries(ston
 
 //lijst steen-namen
 export const allStoneTypes = stoneData.map(s => s.name) as StoneType[];
+
+//helper functie: geef text--reverse class als kleur red, orange of blue is
+export const shouldReverseText = (variant: StoneType): boolean => {
+  const color = stoneByName[variant]?.color;
+  return color === 'red' || color === 'orange' || color === 'blue';
+};

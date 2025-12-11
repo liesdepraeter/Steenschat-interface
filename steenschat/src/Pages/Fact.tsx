@@ -1,4 +1,4 @@
-import { type StoneType, stoneByName } from '../data/stones'
+import { type StoneType, stoneByName, shouldReverseText } from '../data/stones'
 import { playStoneSound } from "../Components/WebCamViewer/playStoneSound";
 
 import'./Fact.css'
@@ -16,8 +16,7 @@ function Fact({stone='rozenkwarts'} : FactProps) {
 
   const data = stoneByName[stone];
 
-  const textShouldReverse = ["rozenkwarts", "citrien", "obsidiaan"].includes(stone);
-  const textColor = textShouldReverse ? "text--reverse" : "";
+  const textColor = shouldReverseText(stone) ? "text--reverse" : "";
 
   useEffect(() => {
     playStoneSound(stone);
@@ -35,7 +34,7 @@ function Fact({stone='rozenkwarts'} : FactProps) {
           <img className='fact-content__img' src={data.img} alt={stone} /> {/*stoneImages[stone]*/}
           <div className='fact-content__fact'>
             <p className={`fact__big-text bold-text ${textColor}`}>Wist je dat ...</p>
-            <p className={`default-text ${textColor}`}>{data.fact}</p> {/*stoneFacts[stone]*/}
+            <p className={`fact__small-text default-text ${textColor}`}>{data.fact}</p> {/*stoneFacts[stone]*/}
           </div>
         </div>
       </div>
