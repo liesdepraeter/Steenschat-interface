@@ -49,8 +49,10 @@
 
 .magnifying-glass-reveal {
     position: absolute;
-    width: 10rem;
-    height: 10rem;
+    /*width: 10rem;
+    height: 10rem;*/
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
     background: transparent;
     pointer-events: none;
@@ -60,8 +62,10 @@
 /* Algemene rock styling */
 .rock {
     position: absolute;
-    height: 8rem;
-    width: 8rem;
+    /*height: 8rem;
+    width: 8rem;*/
+    height: 4rem;
+    width: 4rem;
     border-radius: 0%;
     background-size: contain;
     background-repeat: no-repeat;
@@ -82,8 +86,10 @@
 
 /* Magnifying glass element */
 .image {
-    width: 240px;
-    height: 240px;
+    /*width: 240px;
+    height: 240px;*/
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     pointer-events: none;
     background: transparent;
