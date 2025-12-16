@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type RefObject } from 'react';
 import * as tmImage from '@teachablemachine/image';
+import * as tf from '@tensorflow/tfjs';
 import { allStoneTypes, type StoneType } from '../data/stones';
 
 const MODEL_URL = '/models/stone-recognition/model.json';
@@ -16,9 +17,9 @@ interface UseStoneRecognitionResult {
 }
 
 // Tuning knobs
-const CONFIDENCE_THRESHOLD = 0.6; // minimum confidence to consider a detection
-const STABILITY_COUNT = 3; // require N consecutive frames with same label
-const PREDICTION_INTERVAL_MS = 1000; // throttle predictions
+const CONFIDENCE_THRESHOLD = 0.4; // minimum confidence to consider a detection (further lowered for Raspberry Pi)
+const STABILITY_COUNT = 2; // require N consecutive frames with same label (reduced for faster response)
+const PREDICTION_INTERVAL_MS = 3000; // throttle predictions (further increased for slower devices)
 
 export const useStoneRecognition = (
   videoRef: RefObject<HTMLVideoElement>,
@@ -46,6 +47,12 @@ export const useStoneRecognition = (
     const load = async () => {
       try {
         setModelError(null);
+        
+        // Force CPU backend for compatibility with Raspberry Pi and older browsers
+        await tf.setBackend('cpu');
+        await tf.ready();
+        console.log('TensorFlow.js backend:', tf.getBackend());
+        
         const model = await tmImage.load(MODEL_URL, METADATA_URL);
         if (!isMounted) return;
 

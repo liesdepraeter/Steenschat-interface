@@ -14,7 +14,7 @@
 .game-intsruction--search {
     display: flex;
     flex-direction: column;
-    gap: var(--size-spacing-large); //24px;
+    gap: var(--size-spacing-large);
 }
 
 .arrow-wrapper {

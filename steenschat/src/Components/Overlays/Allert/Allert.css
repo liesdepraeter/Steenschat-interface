@@ -19,5 +19,5 @@
     align-items: center;
     gap: var(--size-spacing-small);
 
-    padding: var(--size-spacing-medium) var(--size-spacing-large); //16px 24px
+    padding: var(--size-spacing-medium) var(--size-spacing-large); 
 }

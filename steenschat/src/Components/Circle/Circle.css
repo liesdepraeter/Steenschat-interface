@@ -52,7 +52,7 @@
     rotate: -140.27deg;
 }
 .half-circle--large {
-    //scale: 0.625;
+    scale: 0.625;
     width: 125px;
     height: 62.5px;
     position: absolute;
@@ -81,7 +81,7 @@
     display: flex;
     justify-content: center;
     align-items: end;
-    padding-bottom: var(--xxl); //32px
+    padding-bottom: var(--xxl); 
 }
 
 .half-circle__text {

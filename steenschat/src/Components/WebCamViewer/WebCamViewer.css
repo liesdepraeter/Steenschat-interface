@@ -1,6 +1,6 @@
 .video-container {
-    //width: 500px;
-    //height: 280px;
+    width: 500px;
+    height: 280px;
     width: 500px;
     max-width: 100%;
     aspect-ratio: 16 / 9;
@@ -8,6 +8,28 @@
     position: relative; 
     overflow: hidden;
     border-radius: var(--size-radius-base); 
+}
+
+.camera-selector {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.camera-select {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  min-width: 150px;
+}
+
+.camera-select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 video {

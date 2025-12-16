@@ -104,16 +104,18 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
   // --- Webcam Logica ---
   useEffect(() => {
     const startWebcam = async () => {
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        setErrorMessage('Je browser ondersteunt geen webcamtoegang.');
-        return;
-      }
       try {
+        // Check if media devices are supported
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          throw new Error('Media devices API not supported');
+        }
+
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         streamRef.current = stream;
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
+        setErrorMessage('');
       } catch (err: any) {
         console.error(err);
         setErrorMessage('Kon webcam niet starten: ' + err.message);
