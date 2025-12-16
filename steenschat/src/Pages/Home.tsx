@@ -24,7 +24,7 @@ function Home() {
       timer = setTimeout(() => {
         console.log("Timeout verlopen, verberg error automatisch.");
         clearError();
-      }, 10000);
+      }, 3000);
     }
 
     return () => {
