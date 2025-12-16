@@ -12,6 +12,8 @@ int redLed = 9;
 int yellowButton = 11;
 int yellowLed = 12;
 
+/*bool forceAllOn = false;*/
+
 // the setup routine runs once when you press reset:
 void setup() {
   // initialize serial communication at 9600 bits per second:
@@ -29,6 +31,30 @@ void setup() {
 
 // the loop routine runs over and over again forever:
 void loop() {
+  // ===== 1. Lees inkomende serial data =====
+  /*if (Serial.available() > 0) {
+    String command = Serial.readStringUntil('\n');
+    command.trim();
+    command.toUpperCase();
+
+    if (command == "ALL_ON") {
+      forceAllOn = true;
+    } 
+    else if (command == "ALL_OFF") {
+      forceAllOn = false;
+    }
+  }*/
+
+  // ===== 2. Als ALL_ON actief is =====
+  /*if (forceAllOn) {
+    digitalWrite(redLed, HIGH);
+    digitalWrite(greenLed, HIGH);
+    digitalWrite(blueLed, HIGH);
+    digitalWrite(yellowLed, HIGH);
+    return; // sla button-logica over
+  }*/
+
+  // ===== 3. Button-logica (zoals je al had) =====
   // read the input pin:
   int blueButtonState = digitalRead(blueButton);
   int yellowButtonState = digitalRead(yellowButton);

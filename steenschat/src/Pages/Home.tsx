@@ -37,6 +37,7 @@ function Home() {
 
   return (
     <>
+      
       {isErrorActive ? (
         <Error onClearError={clearError}/>
       ) : (

@@ -14,6 +14,8 @@ const SerialConnection: React.FC<SerialConnectionProps> = ({ onConnected, onDisc
   const bufferRef = useRef<string>('');
   const activeKeyRef = useRef<string | null>(null);
   const keyTimeoutRef = useRef<number | null>(null);
+  /*const writerRef = useRef<any>(null);*/
+
   const buttonToKeyRef = useRef<Record<string, string>>({
     red: 'ArrowUp',
     yellow: 'ArrowDown',
@@ -174,6 +176,8 @@ const SerialConnection: React.FC<SerialConnectionProps> = ({ onConnected, onDisc
       }
     }
   };
+
+  
 
   // Try to auto-connect to previously granted ports on mount
   useEffect(() => {
