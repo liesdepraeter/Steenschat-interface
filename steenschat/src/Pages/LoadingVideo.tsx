@@ -1,35 +1,28 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./LoadingVideo.css";
 
 export default function LoadingVideo() {
   const navigate = useNavigate();
-  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // We halen de steen-variant op via navigation state
   const location = useLocation();
   const variant = location.state?.variant || "rozenkwarts";
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleEnded = () => {
+    const timer = setTimeout(() => {
       navigate(`/${variant}/fact`);
-    };
+    }, 2500); // 2.5 seconds
 
-    video.addEventListener("ended", handleEnded);
-    return () => video.removeEventListener("ended", handleEnded);
+    return () => clearTimeout(timer);
   }, [navigate, variant]);
 
   return (
     <div className="full-screen-container loading-video-container">
-      <video
-        ref={videoRef}
-        src="/video/stonefiche.mp4"
-        autoPlay
-        playsInline
-        className="loading-video"
+      <img
+        src="/images/stonefiche.png"
+        alt="Stone fiche"
+        className="loading-image"
       />
     </div>
   );
