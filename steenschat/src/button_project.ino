@@ -1,3 +1,7 @@
+#include <Adafruit_NeoPixel.h>
+#define LED_PIN    13
+#define LED_COUNT  256
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_RGB + NEO_KHZ800);
 
 // digital pin 2 has a pushbutton attached to it. Give it a name:
 int greenButton = 2;
@@ -27,6 +31,15 @@ void setup() {
   pinMode(yellowLed, OUTPUT);
   pinMode(redLed, OUTPUT);
   pinMode(greenLed, OUTPUT);
+
+  //LED-paneel
+  strip.begin();
+  strip.setBrightness(255);
+  for (int i = 0; i < LED_COUNT; i++) {
+    strip.setPixelColor(i, strip.Color(255, 150, 255));
+  }
+  strip.show();
+
 }
 
 // the loop routine runs over and over again forever:
