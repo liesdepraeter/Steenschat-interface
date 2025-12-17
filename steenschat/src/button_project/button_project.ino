@@ -1,23 +1,16 @@
-#include <Adafruit_NeoPixel.h>
-#define LED_PIN    13
-#define LED_COUNT  256
-Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_RGB + NEO_KHZ800);
-
 // digital pin 2 has a pushbutton attached to it. Give it a name:
 int greenButton = 2;
 int greenLed = 3;
-
+ 
 int blueButton = 5;
 int blueLed = 6;
-
+ 
 int redButton = 8;
 int redLed = 9;
-
+ 
 int yellowButton = 11;
 int yellowLed = 12;
-
-/*bool forceAllOn = false;*/
-
+ 
 // the setup routine runs once when you press reset:
 void setup() {
   // initialize serial communication at 9600 bits per second:
@@ -31,43 +24,10 @@ void setup() {
   pinMode(yellowLed, OUTPUT);
   pinMode(redLed, OUTPUT);
   pinMode(greenLed, OUTPUT);
-
-  //LED-paneel
-  strip.begin();
-  strip.setBrightness(255);
-  for (int i = 0; i < LED_COUNT; i++) {
-    strip.setPixelColor(i, strip.Color(255, 150, 255));
-  }
-  strip.show();
-
 }
-
+ 
 // the loop routine runs over and over again forever:
 void loop() {
-  // ===== 1. Lees inkomende serial data =====
-  /*if (Serial.available() > 0) {
-    String command = Serial.readStringUntil('\n');
-    command.trim();
-    command.toUpperCase();
-
-    if (command == "ALL_ON") {
-      forceAllOn = true;
-    } 
-    else if (command == "ALL_OFF") {
-      forceAllOn = false;
-    }
-  }*/
-
-  // ===== 2. Als ALL_ON actief is =====
-  /*if (forceAllOn) {
-    digitalWrite(redLed, HIGH);
-    digitalWrite(greenLed, HIGH);
-    digitalWrite(blueLed, HIGH);
-    digitalWrite(yellowLed, HIGH);
-    return; // sla button-logica over
-  }*/
-
-  // ===== 3. Button-logica (zoals je al had) =====
   // read the input pin:
   int blueButtonState = digitalRead(blueButton);
   int yellowButtonState = digitalRead(yellowButton);
@@ -75,28 +35,28 @@ void loop() {
   int greenButtonState = digitalRead(greenButton);
   
   // Send button states while pressed (0 = pressed with INPUT_PULLUP)
-  if (redButtonState == 0) {
+  if (redButtonState == 1) {
     Serial.println("red");
     digitalWrite(redLed, HIGH);
   } else {
     digitalWrite(redLed, LOW);
   }
   
-  if (greenButtonState == 0) {
+  if (greenButtonState == 1) {
     Serial.println("green");
     digitalWrite(greenLed, HIGH);
   } else {
     digitalWrite(greenLed, LOW);
   }
   
-  if (blueButtonState == 0) {
+  if (blueButtonState == 1) {
     Serial.println("blue");
     digitalWrite(blueLed, HIGH);
   } else {
     digitalWrite(blueLed, LOW);
   }
   
-  if (yellowButtonState == 0) {
+  if (yellowButtonState == 1) {
     Serial.println("yellow");
     digitalWrite(yellowLed, HIGH);
   } else {
