@@ -21,8 +21,10 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
   // Retry state
   const [retryCount, setRetryCount] = useState<number>(0);
   const [cameraStatus, setCameraStatus] = useState<'initializing' | 'connecting' | 'connected' | 'error'>('initializing');
+  const [debugInfo, setDebugInfo] = useState<string>('');
+  const [availableCameras, setAvailableCameras] = useState<MediaDeviceInfo[]>([]);
   const retryTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const maxRetries = 20;
+  const maxRetries = 30; // Verhoogd naar 30
 
   const {
     detectedStone,
@@ -31,7 +33,30 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
     modelError,
   } = useStoneRecognition(videoRef as React.RefObject<HTMLVideoElement>, cameraStatus === 'connected' && !errorMessage);
 
-  // --- Webcam Logica met Retry ---
+  // DEBUG: Enumerate cameras
+  useEffect(() => {
+    const enumerateCameras = async () => {
+      try {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+        setAvailableCameras(videoDevices);
+        console.log('📹 Beschikbare camera devices:', videoDevices);
+        setDebugInfo(`Gevonden cameras: ${videoDevices.length}`);
+      } catch (err) {
+        console.error('Enumerate error:', err);
+      }
+    };
+
+    enumerateCameras();
+
+    // Luister naar device changes
+    navigator.mediaDevices.addEventListener('devicechange', enumerateCameras);
+    return () => {
+      navigator.mediaDevices.removeEventListener('devicechange', enumerateCameras);
+    };
+  }, []);
+
+  // --- Webcam Logica met Retry en DEBUG ---
   useEffect(() => {
     let mounted = true;
 
@@ -47,23 +72,49 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
 
         // Check if media devices are supported
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-          throw new Error('Media devices API wordt niet ondersteund door deze browser');
+          throw new Error('Media devices API wordt niet ondersteund');
         }
 
-        // Kleine wachttijd voor stabiliteit
-        await new Promise(resolve => setTimeout(resolve, 500));
+        // Wacht langer bij eerste pogingen
+        const waitTime = retryCount < 5 ? 2000 : 500;
+        await new Promise(resolve => setTimeout(resolve, waitTime));
 
-        // Probeer camera stream te krijgen
-        const stream = await navigator.mediaDevices.getUserMedia({ 
-          video: {
-            width: { ideal: 1920 },
-            height: { ideal: 1080 }
-          } 
-        });
+        console.log(`🔍 Poging ${retryCount + 1}: Vraag camera aan...`);
+
+        // Probeer VERSCHILLENDE strategieën
+        let stream: MediaStream | null = null;
+
+        // Strategie 1: Specifieke camera als we er meerdere hebben
+        if (availableCameras.length > 0 && retryCount >= 3) {
+          console.log('Strategie: Specifieke camera proberen');
+          for (const camera of availableCameras) {
+            try {
+              stream = await navigator.mediaDevices.getUserMedia({
+                video: { deviceId: { exact: camera.deviceId } }
+              });
+              console.log(`✅ Camera werkt: ${camera.label || camera.deviceId}`);
+              break;
+            } catch (e) {
+              console.log(`❌ Camera mislukt: ${camera.label || camera.deviceId}`);
+            }
+          }
+        }
+
+        // Strategie 2: Basis request (probeer eerst dit)
+        if (!stream) {
+          console.log('Strategie: Basis video request');
+          stream = await navigator.mediaDevices.getUserMedia({ 
+            video: true 
+          });
+        }
 
         if (!mounted) {
-          stream.getTracks().forEach(track => track.stop());
+          stream?.getTracks().forEach(track => track.stop());
           return;
+        }
+
+        if (!stream) {
+          throw new Error('Geen stream verkregen');
         }
 
         streamRef.current = stream;
@@ -73,19 +124,33 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
           setCameraStatus('connected');
           setRetryCount(0);
           setErrorMessage('');
-          console.log('✅ Camera verbonden');
+          
+          // Log welke camera we gebruiken
+          const videoTrack = stream.getVideoTracks()[0];
+          const settings = videoTrack.getSettings();
+          console.log('✅ Camera verbonden:', {
+            label: videoTrack.label,
+            settings: settings
+          });
+          setDebugInfo(`Camera: ${videoTrack.label}`);
         }
       } catch (err: any) {
-        console.error('Camera error:', err.name, err.message);
+        console.error('❌ Camera error:', {
+          name: err.name,
+          message: err.message,
+          retry: retryCount,
+          availableCameras: availableCameras.length
+        });
         
         if (!mounted) return;
 
         setCameraStatus('error');
+        setDebugInfo(`Error: ${err.name} (${retryCount + 1}/${maxRetries})`);
 
-        // Retry logica - probeer max 20 keer met exponential backoff
+        // Retry logica
         if (retryCount < maxRetries) {
-          const delay = Math.min(1000 + (retryCount * 500), 5000);
-          console.log(`🔄 Camera retry ${retryCount + 1}/${maxRetries} over ${delay}ms`);
+          const delay = Math.min(2000 + (retryCount * 500), 6000);
+          console.log(`🔄 Retry over ${delay}ms`);
           
           retryTimeoutRef.current = setTimeout(() => {
             if (mounted) {
@@ -93,8 +158,8 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
             }
           }, delay);
         } else {
-          setErrorMessage('Camera kon niet worden gestart na meerdere pogingen. Controleer de USB verbinding.');
-          console.error('❌ Camera gefaald na 20 pogingen');
+          setErrorMessage(`Camera niet beschikbaar: ${err.name}. Gevonden devices: ${availableCameras.length}`);
+          console.error('❌ Camera gefaald na alle pogingen');
         }
       }
     };
@@ -110,7 +175,7 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
         streamRef.current.getTracks().forEach(track => track.stop());
       }
     };
-  }, [retryCount]);
+  }, [retryCount, availableCameras]);
 
   // Toon modelfout als algemene fout
   useEffect(() => {
@@ -144,22 +209,16 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
   const handleConfirm = () => {
     if (!detectedStone) return;
     
-    // Play sound associated with the detected stone -> naar Fact
     {/*playStoneSound(detectedStone);*/}
-    
-    // Eerst naar loading video
-    {/*navigate(`/${detectedStone}/fact`);*/}
     navigate("/scanning", {state: {variant: detectedStone} });
     setShowConfirmButton(false);
   };
 
   const handleExternalTrigger = () => {
-    //Indien steen niet gedetecteerd -> error doorgeven aan Home
     if (!detectedStone) {
       onNoStoneError();
       return;
     }
-    // Indien steen wél gedetecteerd → doe normale confirm logica
     handleConfirm();
   };
 
@@ -174,16 +233,36 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
     <div className="video-container">
       <video className='video--small' ref={videoRef} autoPlay playsInline muted />
 
-      {/* Camera status berichten (initializing/connecting) */}
+      {/* DEBUG INFO - Altijd zichtbaar */}
+      <div style={{
+        position: 'absolute',
+        top: '10px',
+        left: '10px',
+        background: 'rgba(0,0,0,0.8)',
+        color: '#0f0',
+        padding: '8px',
+        fontSize: '11px',
+        fontFamily: 'monospace',
+        borderRadius: '4px',
+        zIndex: 100,
+        maxWidth: '90%'
+      }}>
+        <div>Status: {cameraStatus}</div>
+        <div>Retry: {retryCount}/{maxRetries}</div>
+        <div>{debugInfo}</div>
+        <div>Devices: {availableCameras.map(c => c.label || 'Unknown').join(', ')}</div>
+      </div>
+
+      {/* Camera status berichten */}
       {cameraStatus !== 'connected' && !errorMessage && (
         <div className="messages loading-message default-text text--reverse">
           {cameraStatus === 'initializing' && '🎥 Camera initialiseren...'}
-          {cameraStatus === 'connecting' && `🔄 Camera verbinden... (poging ${retryCount + 1}/${maxRetries})`}
-          {cameraStatus === 'error' && retryCount < maxRetries && `⏳ Camera opnieuw proberen... (${retryCount + 1}/${maxRetries})`}
+          {cameraStatus === 'connecting' && `🔄 Camera verbinden... (${retryCount + 1}/${maxRetries})`}
+          {cameraStatus === 'error' && retryCount < maxRetries && `⏳ Opnieuw proberen... (${retryCount + 1}/${maxRetries})`}
         </div>
       )}
 
-      {/* Toon de algemene foutmelding indien aanwezig */}
+      {/* Foutmelding */}
       {errorMessage && (
         <div className="messages error-message default-text text--reverse">
           {errorMessage}
@@ -197,7 +276,7 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
         </div>
       )}
 
-      {/* De knipperende overlay */}
+      {/* Knipperende overlay */}
       {!errorMessage && cameraStatus === 'connected' && isModelLoaded && !detectedStone && (
         <div className={`video-overlay ${isOverlayVisible ? 'visible' : 'hidden'}`}>
           <IconCamera />
@@ -213,10 +292,8 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
             onClick={handleConfirm}
             disabled={!detectedStone}
           >
-            {/* {displayName} */}
             Steen gedetecteerd
           </button>
-          {/* <p className="confidence-text">Zekerheid: {Math.round(confidence * 100)}%</p> */}
         </div>
       )}
     </div>
