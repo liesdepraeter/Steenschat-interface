@@ -7,7 +7,6 @@ export default function MagnifyingGlass() {
   const glassRef = useRef<HTMLDivElement | null>(null);
   const borderRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLElement | null>(null);
-  const moveBy = 15;
 
   useEffect(() => {
     // Use the existing `.container` rendered in App.tsx
@@ -17,9 +16,6 @@ export default function MagnifyingGlass() {
     // Create the magnifying glass element and append to body
     const glass = document.createElement("div");
     glass.className = "image";
-    // initial position (left/top) kept inline so it can be adjusted programmatically
-    glass.style.left = "600px";
-    glass.style.top = "400px";
     document.body.appendChild(glass);
     glassRef.current = glass;
 
@@ -28,6 +24,24 @@ export default function MagnifyingGlass() {
     border.className = "magnifying-glass-reveal";
     document.body.appendChild(border);
     borderRef.current = border;
+
+    // Wait for a frame so CSS variables/styles are applied, then center the glass
+    requestAnimationFrame(() => {
+      const g = glassRef.current;
+      const b = borderRef.current;
+      if (!g) return;
+      const gStyle = getComputedStyle(g);
+      const gWidth = parseInt(gStyle.width || "120") || 120;
+      const gHeight = parseInt(gStyle.height || "120") || 120;
+      g.style.left = Math.max(0, Math.round(window.innerWidth / 2 - gWidth / 2)) + "px";
+      g.style.top = Math.max(0, Math.round(window.innerHeight / 2 - gHeight / 2)) + "px";
+      if (b) {
+        b.style.left = g.style.left;
+        b.style.top = g.style.top;
+      }
+    });
+
+    
 
     // We will update the container's clip-path directly. The amethyst image
     // is now inside the container so it will be revealed by the container's clip.
@@ -38,14 +52,19 @@ export default function MagnifyingGlass() {
       if (!g) return;
       let left = parseInt(g.style.left || "0") || 0;
       let top = parseInt(g.style.top || "0") || 0;
-      if (keysPressed.current.ArrowUp) top -= moveBy;
-      if (keysPressed.current.ArrowDown) top += moveBy;
-      if (keysPressed.current.ArrowLeft) left -= moveBy;
-      if (keysPressed.current.ArrowRight) left += moveBy;
-
-      // clamp to container bounds (if container exists) or viewport
+      // compute movement step dynamically based on element size for finer control
       const w = g.offsetWidth;
       const h = g.offsetHeight;
+      const step = Math.max(6, Math.round(Math.max(w, h) / 10));
+      if (keysPressed.current.ArrowUp) top -= step;
+      if (keysPressed.current.ArrowDown) top += step;
+      if (keysPressed.current.ArrowLeft) left -= step;
+      if (keysPressed.current.ArrowRight) left += step;
+
+      // clamp to container bounds (if container exists) or viewport
+      // w/h already computed above when calculating step
+      // const w = g.offsetWidth;
+      // const h = g.offsetHeight;
       let minLeft = 0;
       let minTop = 0;
       let maxLeft = window.innerWidth - w;

@@ -91,6 +91,13 @@
   overflow: hidden;
 }
 
+/* Global responsive sizes for magnifier and stones */
+:root {
+  --magnifier-size: 4rem; /* default global magnifier */
+  --image-size: 96px;    /* default image diameter */
+  --rock-size: 3rem;     /* default rock size */
+}
+
 .title-text {
   font-family: 'Mabry Pro Black', Arial, Helvetica, sans-serif;
   line-height: 150%;

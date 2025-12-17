@@ -12,6 +12,13 @@
     z-index: 1;
 }
 
+/* Responsive size variables (tweak for Raspberry Pi 7" displays) */
+:root {
+    --magnifier-size: 5rem; /* used by .magnifying-glass-reveal */
+    --image-size: 120px;   /* used by .image */
+    --rock-size: 4rem;     /* used by .rock */
+}
+
 .content__text {
     font-size: var(--l); /*20px*/
     text-align: center;
@@ -49,10 +56,8 @@
 
 .magnifying-glass-reveal {
     position: absolute;
-    /*width: 10rem;
-    height: 10rem;*/
-    width: 5rem;
-    height: 5rem;
+    width: var(--magnifier-size);
+    height: var(--magnifier-size);
     border-radius: 50%;
     background: transparent;
     pointer-events: none;
@@ -64,8 +69,8 @@
     position: absolute;
     /*height: 8rem;
     width: 8rem;*/
-    height: 4rem;
-    width: 4rem;
+    height: var(--rock-size);
+    width: var(--rock-size);
     border-radius: 0%;
     background-size: contain;
     background-repeat: no-repeat;
@@ -88,8 +93,8 @@
 .image {
     /*width: 240px;
     height: 240px;*/
-    width: 120px;
-    height: 120px;
+    width: var(--image-size);
+    height: var(--image-size);
     border-radius: 50%;
     pointer-events: none;
     background: transparent;
@@ -115,3 +120,28 @@
 .preview-emerald { background: linear-gradient(45deg, #4ecf8c, #2aa65a) }
 .preview-topaz { background: linear-gradient(45deg, #ffd966, #ffb857) }
 .preview-quartz { background: linear-gradient(45deg, #f2f2f2, #dcdcdc) }
+
+/* Responsive adjustments for smaller displays (Raspberry Pi 7") */
+@media (max-width: 1024px) {
+    :root {
+        --magnifier-size: 4rem;
+        --image-size: 96px;
+        --rock-size: 3rem;
+    }
+}
+
+@media (max-width: 800px) {
+    :root {
+        --magnifier-size: 3.5rem;
+        --image-size: 80px;
+        --rock-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --magnifier-size: 3rem;
+        --image-size: 64px;
+        --rock-size: 2rem;
+    }
+}

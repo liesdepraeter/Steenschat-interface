@@ -1,10 +1,8 @@
 /* Styles for the programmatically-created magnifying glass elements */
 .image {
   position: absolute;
-  /*width: 240px;
-  height: 240px;*/
-  width: 120px;
-  height: 120px;
+  width: var(--image-size, 120px);
+  height: var(--image-size, 120px);
   border-radius: 50%;
   pointer-events: none;
   z-index: 100;
@@ -13,10 +11,8 @@
 
 .magnifying-glass-reveal {
   position: absolute;
-  /*width: 240px;
-  height: 240px;*/
-  width: 120px;
-  height: 120px;
+  width: var(--magnifier-size, 120px);
+  height: var(--magnifier-size, 120px);
   border-radius: 50%;
   background: transparent;
   pointer-events: none;
