@@ -15,8 +15,9 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding-top: 32px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
 }
 
 
@@ -26,22 +27,35 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: var(--size-spacing-large);
+    gap: 32px;
+    text-align: center;
 }
 
 .game-intstruction__text-box {
     display: flex;
     flex-direction: column;
-    gap: var(--size-spacing-small);
+    gap: 12px;
 }
 
 .game-instruction__text {
     display: flex;
-    gap: var(--size-spacing-small);
+    gap: 12px;
     justify-content: center;
     align-items: center;
+    font-size: 2.6rem;
+    font-weight: 700;
 }
 .game-instruction__cards {
     display: flex;
     gap: var(--size-spacing-medium);
+}
+
+/* Make small IconArrow instances larger inside catch game instructions */
+.game-instruction .circle--in-text {
+    width: 64px;
+    height: 64px;
+}
+.game-instruction .circle--in-text svg {
+    width: 36px;
+    height: 36px;
 }

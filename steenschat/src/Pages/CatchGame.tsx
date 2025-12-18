@@ -176,7 +176,7 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
       {/* SCORE */}
       <div className="score-box">
         <Circle size="base" color={stoneColor}> {/*variantColors[variant]*/}
-          <p>Score: {score}</p>
+          <p>{score}/5</p>
         </Circle>
       </div>
 

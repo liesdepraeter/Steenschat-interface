@@ -1,6 +1,5 @@
 import {type StoneType} from '../../../data/stones';
 import './SearchGameStart.css'
-import NavigationIntstruction from "../../Instruction/NavigationIntstruction";
 import IconArrow from '../../Icons/IconArrow';
 import { useInputController } from '../../../Hooks/useInputController';
 
@@ -38,7 +37,7 @@ function SearchGameStart({variant='rozenkwarts', onStart} : SearchGameProps) {
         </div>
       </div>
       
-      <NavigationIntstruction index='high' color='white' variant={variant}/>
+      {/* NavigationIntstruction removed; keep IconArrow controls above for in-game instruction */}
     </div>
   )
 }

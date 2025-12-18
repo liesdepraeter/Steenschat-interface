@@ -1,19 +1,27 @@
 /* Navigation */
 .nav {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    right: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 8px 20px;
+    z-index: 100;
 }
 
 .nav__back, .nav__next {
     display: flex;
     align-items: center;
-    gap: var(--size-spacing-base);
+    gap: 20px;
+    cursor: pointer;
 }
 
-/*.nav__next {
-    display: flex;
-}*/
+.nav__back p, .nav__next p {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
 
 .instruction--high {
     position: relative;

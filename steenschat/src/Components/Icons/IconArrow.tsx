@@ -20,11 +20,11 @@ const IconArrow: React.FC<CircleProps> = ({ index='default', size, color, arrow 
     index? `arrow--${index}` : '',
   ].join(' ').trim();
 
-  let arrowSize = 45; 
+  let arrowSize = 48; 
   if (size === 'in-text') {
-    arrowSize = 18; //16
+    arrowSize = 20; //16
   } else if (size === 'button') {
-    arrowSize = 24; //36 
+    arrowSize = 64; //36 
   }
 
   const arrowClass = arrow ? `arrow-${arrow}` : '';

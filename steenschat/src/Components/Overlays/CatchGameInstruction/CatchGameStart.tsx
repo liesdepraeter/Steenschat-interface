@@ -2,7 +2,6 @@ import {type StoneType} from '../../../data/stones';
 import ScoreInstruction from '../../Instruction/CatchGame/ScoreInstruction'
 import Circle from '../../Circle/Circle';
 import IconArrow from '../../Icons/IconArrow'
-import NavigationIntstruction from '../../Instruction/NavigationIntstruction';
 import'./CatchGameStart.css'
 import { useInputController } from '../../../Hooks/useInputController';
 
@@ -47,7 +46,7 @@ function CatchGameStart({variant='rozenkwarts', onStart} : CatchGameProps) {
                     <ScoreInstruction score='+1' variant={variant}/>
                 </div>
             </div>
-            <NavigationIntstruction color='white' variant={variant}/>
+            {/* NavigationIntstruction removed; keep IconArrow controls within the instruction above */}
         </div>
         
     </div>

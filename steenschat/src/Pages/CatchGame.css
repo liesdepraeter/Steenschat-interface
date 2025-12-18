@@ -61,3 +61,33 @@
   font-weight: bold;
   color: #333;
 }
+
+/* Enlarged scoreboard */
+.score-box {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 40;
+  transform: scale(1.25);
+  transform-origin: top right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-box .default-text {
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+}
+
+.score-box .half-circle {
+  /* ensure the background circle is visible and centered */
+  border-radius: 50% !important;
+  width: 130px !important;
+  height: 130px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0 !important;
+}
