@@ -3,13 +3,12 @@
     width: 100svw;
     display: flex;
     flex-direction: column;
-    padding: 64px;
-    padding: 32px;
+    padding: 0;
     overflow: hidden;
 }
 
 .container--home {
     align-items: center;
-    gap: var(--size-spacing-large);
-    justify-content: space-between;
+    gap: 0;
+    justify-content: center;
 }

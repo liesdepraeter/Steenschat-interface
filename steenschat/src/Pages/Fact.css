@@ -1,9 +1,9 @@
 .container--fact {
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     position: relative;
     z-index: 1;
-    padding-bottom: 48px;
+    padding-bottom: 0;
 }
 
 
@@ -13,10 +13,21 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--size-spacing-large); 
+    gap: var(--size-spacing-large);
+}
+
+.fact-content--centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    max-width: 600px;
 }
 
 .fact-content__title {
+    font-size: 6rem;
     text-transform: capitalize;
 }
 
@@ -34,9 +45,10 @@
 }
 
 .fact__big-text{
-    font-size: var(--size-text-big); 
+    font-size: 3.5rem; 
 }
 
 .fact__small-text{
+    font-size: 2rem;
     text-align: center;
 }

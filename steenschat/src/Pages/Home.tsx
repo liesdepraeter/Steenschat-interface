@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import './Home.css'
-import Circle from '../Components/Circle/Circle'
-import PushButtonInstruction from '../Components/Instruction/PushButtonInstruction'
 import WebcamViewer from '../Components/WebCamViewer/WebCamViewer'
 import Error from '../Components/Overlays/Error/Error'
 
@@ -43,11 +41,7 @@ function Home() {
       ) : (
       <div className='full-screen-container container--home'>
         <WebcamViewer onNoStoneError={triggerError}/>
-        <PushButtonInstruction/>
       </div>)}
-      <Circle size='small' color='green'/>
-      <Circle size='medium' color='light-red'/>
-      <Circle size='large' color='yellow'/>
 
       {/* Tijdelijke knop om de fout te testen. */}
       {/*{!isErrorActive && (

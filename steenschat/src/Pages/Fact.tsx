@@ -29,7 +29,7 @@ function Fact({stone='rozenkwarts'} : FactProps) {
       <div className='full-screen-container container--fact'>
         <NavigationIntstruction variant={stone} color='sand'/>
 
-        <div className='fact-content'>
+        <div className='fact-content fact-content--centered'>
           <p className={`fact-content__title title-text ${textColor}`}>{stone}</p>
           <img className='fact-content__img' src={data.img} alt={stone} /> {/*stoneImages[stone]*/}
           <div className='fact-content__fact'>
@@ -38,8 +38,6 @@ function Fact({stone='rozenkwarts'} : FactProps) {
           </div>
         </div>
       </div>
-      
-      
     </>
   )
 }

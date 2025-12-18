@@ -4,7 +4,6 @@ import { useStoneRecognition } from '../../Hooks/useStoneRecognition';
 import { useInputController } from "../../Hooks/useInputController";
 {/*import { playStoneSound } from "./playStoneSound";*/}
 import './WebCamViewer.css';
-import IconCamera from '../Icons/IconCamera';
 
 interface WebcamViewerProps {
   onNoStoneError: () => void;
@@ -21,7 +20,7 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
   // Retry state
   const [retryCount, setRetryCount] = useState<number>(0);
   const [cameraStatus, setCameraStatus] = useState<'initializing' | 'connecting' | 'connected' | 'error'>('initializing');
-  const retryTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const retryTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const maxRetries = 20;
 
   const {
@@ -197,26 +196,17 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
         </div>
       )}
 
-      {/* De knipperende overlay */}
+      {/* De knipperende overlay - alleen tekst */}
       {!errorMessage && cameraStatus === 'connected' && isModelLoaded && !detectedStone && (
         <div className={`video-overlay ${isOverlayVisible ? 'visible' : 'hidden'}`}>
-          <IconCamera />
-          <p className="default-text text--reverse">Leg een steen onder de camera</p>
+          <p className="default-text text--reverse">Leg een steen onder de camera & wacht even...</p>
         </div>
       )}
 
-      {/* Bevestigknop */}
+      {/* Stone detected prompt */}
       {showConfirmButton && detectedStone && cameraStatus === 'connected' && (
-        <div className="confirm-button-container">
-          <button
-            className="confirm-button default-text"
-            onClick={handleConfirm}
-            disabled={!detectedStone}
-          >
-            {/* {displayName} */}
-            Steen gedetecteerd
-          </button>
-          {/* <p className="confidence-text">Zekerheid: {Math.round(confidence * 100)}%</p> */}
+        <div className="stone-detected-overlay">
+          <p className="default-text text--reverse">Duw op de rode knop</p>
         </div>
       )}
     </div>
