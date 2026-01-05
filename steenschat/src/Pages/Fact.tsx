@@ -30,10 +30,10 @@ function Fact({stone='rozenkwarts'} : FactProps) {
         <NavigationIntstruction variant={stone} color='sand'/>
 
         <div className='fact-content fact-content--centered'>
-          <p className={`fact-content__title title-text ${textColor}`}>{stone}</p>
+          <p className={`fact-content__title title-text bold-text ${textColor}`}>{stone}</p>
           <img className='fact-content__img' src={data.img} alt={stone} /> {/*stoneImages[stone]*/}
           <div className='fact-content__fact'>
-            <p className={`fact__big-text bold-text ${textColor}`}>Wist je dat ...</p>
+            <p className={`fact__big-text default-text ${textColor}`}>Wist je dat ...</p>
             <p className={`fact__small-text default-text ${textColor}`}>{data.fact}</p> {/*stoneFacts[stone]*/}
           </div>
         </div>
