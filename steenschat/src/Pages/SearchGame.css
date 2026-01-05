@@ -15,7 +15,7 @@
 /* Responsive size variables (tweak for Raspberry Pi 7" displays) */
 :root {
     --magnifier-size: 5rem; /* used by .magnifying-glass-reveal */
-    --image-size: 120px;   /* used by .image */
+    --image-size: 170px;   /* used by .image */
     --rock-size: 4rem;     /* used by .rock */
 }
 
