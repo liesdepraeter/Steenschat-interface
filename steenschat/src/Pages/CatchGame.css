@@ -91,3 +91,36 @@
   justify-content: center;
   padding-bottom: 0 !important;
 }
+
+/* Flash animations for visual feedback */
+@keyframes flashGreen {
+  0% {
+    background-color: var(--color-background);
+  }
+  50% {
+    background-color: var(--color-green-light);
+  }
+  100% {
+    background-color: var(--color-background);
+  }
+}
+
+@keyframes flashRed {
+  0% {
+    background-color: var(--color-background);
+  }
+  50% {
+    background-color: var(--color-red-light);
+  }
+  100% {
+    background-color: var(--color-background);
+  }
+}
+
+.flash--green {
+  animation: flashGreen 0.3s ease-in-out;
+}
+
+.flash--red {
+  animation: flashRed 0.3s ease-in-out;
+}

@@ -54,6 +54,7 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
   const basketXRef = useRef(0);
   const [score, setScore] = useState(0);
   const [stones, setStones] = useState<FallingStone[]>([]);
+  const [flashType, setFlashType] = useState<'green' | 'red' | null>(null);
 
   // Reset state on mount so de start-overlay altijd beschikbaar is bij binnenkomen
   useEffect(() => {
@@ -64,6 +65,7 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
     caughtStonesRef.current.clear();
     setScore(0);
     setStones([]);
+    setFlashType(null);
   }, [setShowStart, setHasStarted, setShowSuccess, setIsPaused]);
 
   // ---SOUNDS ---
@@ -139,6 +141,8 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
               
               if (stone.type === variant) {
                 correctSoundRef.current?.play();
+                setFlashType('green');
+                setTimeout(() => setFlashType(null), 300);
                 setScore(sc => {
                   const newScore = sc + 1;
                   if (newScore >= 5) {
@@ -149,6 +153,8 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
                 });
               } else {
                 wrongSoundRef.current?.play();
+                setFlashType('red');
+                setTimeout(() => setFlashType(null), 300);
                 // Incorrect stones don't affect the score
               }
             }
@@ -171,14 +177,16 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
   const stoneColor = stoneByName[variant].color;
 
   return (
-    <div className="full-screen-container" ref={containerRef}>
+    <div className={`full-screen-container ${flashType ? `flash--${flashType}` : ''}`} ref={containerRef}>
 
-      {/* SCORE */}
-      <div className="score-box">
-        <Circle size="base" color={stoneColor}> {/*variantColors[variant]*/}
-          <p>{score}/5</p>
-        </Circle>
-      </div>
+      {/* SCORE - Only show when game has started */}
+      {!showStart && hasStarted && (
+        <div className="score-box">
+          <Circle size="base" color={stoneColor}> {/*variantColors[variant]*/}
+            <p>{score}/5</p>
+          </Circle>
+        </div>
+      )}
 
       {/* START OVERLAY */}
       {showStart && !showSuccess && (
