@@ -10,7 +10,6 @@ interface SearchGameProps {
 }
 
 function SearchGameStart({variant='rozenkwarts', onStart} : SearchGameProps) {
-  const hasStartedRef = useRef(false);
     
   const handleOverlayClick = () => {
     if (hasStartedRef.current) return;
