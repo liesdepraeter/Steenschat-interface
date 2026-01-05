@@ -149,7 +149,7 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
                 });
               } else {
                 wrongSoundRef.current?.play();
-                setScore(sc => Math.max(0, sc - 1));
+                // Incorrect stones don't affect the score
               }
             }
             return false;

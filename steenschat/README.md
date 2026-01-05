@@ -1,75 +1,28 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Data over de stenen kan aangepast worden in stones.json
+Ga naar src -> data -> stones.json
+ 
+Elke steen wordt opgebouwd als volgt:
+{
+   "name": "rozenkwarts",
+   "img": "/images/stones/rozenkwarts.png",
+   "sound": "/sounds/stones/rozenkwarts.mp3",
+   "color": "red",
+   "fact": "Rozenkwarts is, na water en ijs, het meest voorkomende mineraal op aarde",
+   "game": "catchgame"
+ },
+ 
+# Wat er kan aangepast worden:
+name:
+geef de steen een nieuwe naam
+img:
+voeg een nieuwe (of vervang een) afbeelding in public -> images -> stones
+geef in img mee ‘/images/stones/[naam-van-bestand.bestandstype]
+sound:
+voeg een nieuwe (of vervang een) geluid in public -> sounds -> stones
+geef in sound mee ‘/sounds/stones/[naam-van-bestand.bestandstype]
+color:
+kies uit: red, orange, lemon, blue, purple, light-red
+fact:
+geef een ander feitje mee, maar zorg dat deze niet te lang wordt zodat deze op het scherm blijft passen
+game:
+koppel een andere game aan de steen, kies uit: catchgame, searchgame
