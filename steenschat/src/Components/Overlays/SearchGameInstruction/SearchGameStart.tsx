@@ -8,7 +8,8 @@ interface SearchGameProps {
   onStart?: () => void;
 }
 
-function SearchGameStart({variant='rozenkwarts', onStart} : SearchGameProps) {
+{/*variant='rozenkwarts'*/}
+function SearchGameStart({onStart} : SearchGameProps) {
     
   const handleOverlayClick = () => {
     onStart?.();

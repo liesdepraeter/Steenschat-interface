@@ -34,7 +34,7 @@ function CatchGameStart({variant='rozenkwarts', onStart} : CatchGameProps) {
                 <div className='game-intstruction__text-box'>
                     <p className='game-instruction__text bold-text text--reverse'>Verzamel 5 punten door {variant} te vangen</p>
                     <div className='game-instruction__text bold-text text--reverse'>
-                        <p>Beweeg de mand met de knoppen</p>
+                        <p>Beweeg de schatkist met de knoppen</p>
                         <IconArrow size='in-text' color='blue' arrow='white'/>
                         <IconArrow size='in-text' color='green' arrow='white'/>
                     </div>
