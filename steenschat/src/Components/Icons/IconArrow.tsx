@@ -1,6 +1,6 @@
 import './IconArrow.css'
 type CircleColor = 'red' | 'blue' | 'green' | 'yellow';
-type CircleSize = 'default' | 'button' | 'in-text';
+type CircleSize = 'default' | 'button' | 'in-text' | 'nav';
 type ArrowColor = 'blue' | 'white' | 'sand';
 type ArrowIndex = 'default' | 'high';
 
@@ -25,6 +25,8 @@ const IconArrow: React.FC<CircleProps> = ({ index='default', size, color, arrow 
     arrowSize = 20; //16
   } else if (size === 'button') {
     arrowSize = 64; //36 
+  } else if (size === 'nav') {
+    arrowSize = 96; // Larger for navigation arrows
   }
 
   const arrowClass = arrow ? `arrow-${arrow}` : '';
