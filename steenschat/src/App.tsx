@@ -71,7 +71,13 @@ function App() {
     useInputController({
       confirmOnAnyPress: true,
       onCommand: (cmd) => console.log(cmd),
-      onReset: () => navigate('/'),
+      onReset: () => {
+        // Only allow reset if not in an active game
+        // This prevents accidental resets during SearchGame when keys are pressed rapidly
+        if (!hasStarted || showStart) {
+          navigate('/');
+        }
+      },
     });
 
     return (
