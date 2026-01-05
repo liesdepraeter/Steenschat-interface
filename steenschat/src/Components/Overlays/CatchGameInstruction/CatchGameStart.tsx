@@ -4,6 +4,7 @@ import Circle from '../../Circle/Circle';
 import IconArrow from '../../Icons/IconArrow'
 import'./CatchGameStart.css'
 import { useInputController } from '../../../Hooks/useInputController';
+import { useEffect, useState } from 'react';
 
 
 interface CatchGameProps {
@@ -12,6 +13,20 @@ interface CatchGameProps {
 }
 
 function CatchGameStart({variant='rozenkwarts', onStart} : CatchGameProps) {
+  const [countdown, setCountdown] = useState(5);
+
+  useEffect(() => {
+    if (countdown <= 0) {
+      onStart?.();
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setCountdown(countdown - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [countdown, onStart]);
 
   const handleOverlayClick = () => {
     onStart?.();
@@ -44,6 +59,11 @@ function CatchGameStart({variant='rozenkwarts', onStart} : CatchGameProps) {
                 <div className='game-instruction__cards'>
                     <ScoreInstruction score='+1' variant={variant}/>
                 </div>
+                {countdown > 0 && (
+                    <p className='game-instruction__countdown bold-text text--reverse'>
+                        Klaar? {countdown}...
+                    </p>
+                )}
             </div>
             {/* NavigationIntstruction removed; keep IconArrow controls within the instruction above */}
         </div>

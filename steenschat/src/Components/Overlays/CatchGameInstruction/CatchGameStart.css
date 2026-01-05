@@ -50,6 +50,12 @@
     gap: var(--size-spacing-medium);
 }
 
+.game-instruction__countdown {
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin-top: 16px;
+}
+
 /* Make small IconArrow instances larger inside catch game instructions */
 .game-instruction .circle--in-text {
     width: 64px;
