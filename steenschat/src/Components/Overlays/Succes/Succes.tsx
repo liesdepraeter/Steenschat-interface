@@ -1,28 +1,43 @@
 import { useNavigate } from 'react-router-dom';
 import IconArrow from "../../Icons/IconArrow"
 import './Succes.css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useInputController } from '../../../Hooks/useInputController';
 
 
 function Succes() {
   const navigate = useNavigate();
+  const [canNavigate, setCanNavigate] = useState(false);
 
   const handleClick = () => {
-    navigate('/');
+    if (canNavigate) {
+      navigate('/');
+    }
   };
 
+  // Enable navigation after 4 seconds
+  useEffect(() => {
+    const enableTimer = setTimeout(() => {
+      setCanNavigate(true);
+    }, 4000);
+
+    return () => clearTimeout(enableTimer);
+  }, []);
+
+  // Auto-navigate after 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/');
     }, 5000);
 
     return () => clearTimeout(timer);
-  }, [navigate, 5000]);
+  }, [navigate]);
 
   useInputController({
       onCommand: () => {
-        navigate('/');
+        if (canNavigate) {
+          navigate('/');
+        }
       },
       confirmOnAnyPress: true
     });

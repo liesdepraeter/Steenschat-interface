@@ -38,9 +38,9 @@ const getRandomPosition = (): { left: string; top: string } => {
 };
 
 const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
-  const { showStart, showSuccess, hasStarted, setIsPaused, setShowStart, setHasStarted} = useGameState();
+  const { showStart, showSuccess, hasStarted, setIsPaused, setShowStart, setHasStarted, setShowSuccess} = useGameState();
 
-  const [found, setFound] = useState(window.location.hash === '#found');
+  const [found, setFound] = useState(false);
   // State voor random positie
   const [stonePos, setStonePos] = useState(() => getRandomPosition());
 
@@ -49,19 +49,43 @@ const SearchGame: React.FC<SearchGameProps> = ({ variant = "rozenkwarts" }) => {
   // Gebruik random positie in plaats van vaste POSITIONS
   const pos = stonePos;
 
+  // Reset state on mount to prevent showing success immediately
+  useEffect(() => {
+    // Clear any existing hash
+    if (window.location.hash === '#found') {
+      window.location.hash = '';
+    }
+    // Reset found state
+    setFound(false);
+    // Reset showSuccess state
+    setShowSuccess(false);
+    // Reset game state
+    setShowStart(true);
+    setHasStarted(false);
+    setIsPaused(true);
+  }, [setShowStart, setHasStarted, setIsPaused, setShowSuccess]);
+
   useEffect(() => {
     const onHash = () => {
       const isFound = window.location.hash === '#found';
       setFound(isFound);
+      if (isFound) {
+        setShowSuccess(true);
+      }
     };
     window.addEventListener('hashchange', onHash);
     return () => window.removeEventListener('hashchange', onHash);
-  }, []);
+  }, [setShowSuccess]);
 
   // Update positie wanneer een nieuw spel start
   useEffect(() => {
     if (hasStarted) {
       setStonePos(getRandomPosition());
+      // Clear hash when starting a new game
+      if (window.location.hash === '#found') {
+        window.location.hash = '';
+        setFound(false);
+      }
     }
   }, [hasStarted]);
 

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import "./RockRegistration.css";
+import { useGameState } from "../../Context/GameStateContext";
 
 const checkmarkImage = "/images/Check-mark.png";
 
@@ -7,10 +8,17 @@ export default function RockRegistration() {
   const foundRef = useRef(false);
   const timeoutRef = useRef<number | null>(null);
   const overlayRef = useRef<HTMLImageElement | null>(null);
+  const { hasStarted, showStart } = useGameState();
 
   const correctSound = new Audio("/sounds/correct.mp3")
 
   useEffect(() => {
+    // Don't start checking if game hasn't started or if start overlay is showing
+    if (!hasStarted || showStart) return;
+
+    // Reset foundRef when game starts
+    foundRef.current = false;
+
     // Poll positions and check containment. Use a short interval to match movement.
     const interval = window.setInterval(() => {
       if (foundRef.current) return;
@@ -79,7 +87,7 @@ export default function RockRegistration() {
         overlayRef.current = null;
       }
     };
-  }, []);
+  }, [hasStarted, showStart]);
 
   return null;
 }

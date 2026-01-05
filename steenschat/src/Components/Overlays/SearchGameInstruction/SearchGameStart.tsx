@@ -2,6 +2,7 @@ import {type StoneType} from '../../../data/stones';
 import './SearchGameStart.css'
 import IconArrow from '../../Icons/IconArrow';
 import { useInputController } from '../../../Hooks/useInputController';
+import { useRef } from 'react';
 
 interface SearchGameProps {
   variant?: StoneType;
@@ -9,14 +10,21 @@ interface SearchGameProps {
 }
 
 function SearchGameStart({variant='rozenkwarts', onStart} : SearchGameProps) {
+  const hasStartedRef = useRef(false);
     
   const handleOverlayClick = () => {
+    if (hasStartedRef.current) return;
+    hasStartedRef.current = true;
     onStart?.();
   };
 
   useInputController({
     onCommand: (cmd) => {
-      if(cmd === 'right') onStart?.();
+      if (hasStartedRef.current) return;
+      if(cmd === 'right') {
+        hasStartedRef.current = true;
+        onStart?.();
+      }
       if(cmd === 'left') console.log("eventueel terug of andere actie");
     },
     confirmOnAnyPress: false,
