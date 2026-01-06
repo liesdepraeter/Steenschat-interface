@@ -148,7 +148,7 @@ const WebcamViewer: React.FC<WebcamViewerProps> = ({ onNoStoneError }) => {
     
     // Eerst naar loading video
     {/*navigate(`/${detectedStone}/fact`);*/}
-    navigate("/scanning", {state: {variant: detectedStone} });
+    navigate(`/${detectedStone}/fact`, {state: {variant: detectedStone} });
     setShowConfirmButton(false);
   };
 

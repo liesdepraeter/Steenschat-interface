@@ -12,7 +12,7 @@ import CatchGame from './Pages/CatchGame'
 import SearchGame from './Pages/SearchGame'
 import Allert from './Components/Overlays/Allert/Allert'
 import SearchGameStart from './Components/Overlays/SearchGameInstruction/SearchGameStart';
-import LoadingVideo from './Pages/LoadingVideo';
+
 
 
 
@@ -108,7 +108,7 @@ function App() {
 
         <Route path='/searchgamestart' element={<SearchGameStart variant='obsidiaan'/>}/>
 
-        <Route path='/scanning' element={<LoadingVideo/>}/>
+
       </Routes>
 
       {showAlert && <Allert onPress={() => {
