@@ -27,6 +27,7 @@
 }
 
 .fact-content__title {
+    font-weight: bold;
     margin-top: 6rem;
     font-size: 4.5rem;
     text-transform: capitalize;
