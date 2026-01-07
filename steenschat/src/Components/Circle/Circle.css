@@ -75,6 +75,13 @@
     top: 0;
     right: 0;
 }
+.half-circle--game {
+    width: 182px;
+    height: 91px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
 /* Text */
 .half-circle--with-text {

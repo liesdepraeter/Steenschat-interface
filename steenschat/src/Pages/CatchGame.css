@@ -63,7 +63,7 @@
 }
 
 /* Enlarged scoreboard */
-.score-box {
+/*.score-box {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -73,9 +73,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}*/
+.score-box {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
-.score-box .default-text {
+.score__img {
+  width: 40px;
+  height: 40px;
+}
+
+/*.score-box .default-text {
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+}*/
+.score__text {
   font-size: 2rem;
   font-weight: 800;
   color: white;

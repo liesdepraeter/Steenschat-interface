@@ -27,6 +27,8 @@ interface FallingStone {
 
 const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
 
+  const data = stoneByName[variant];
+
   const {
     isPaused,
     showStart,
@@ -179,13 +181,20 @@ const CatchGame: React.FC<CatchGameProps> = ({ variant = "rozenkwarts" }) => {
   return (
     <div className={`full-screen-container ${flashType ? `flash--${flashType}` : ''}`} ref={containerRef}>
 
-      {/* SCORE - Only show when game has started */}
-      {!showStart && hasStarted && (
-        <div className="score-box">
-          <Circle size="base" color={stoneColor}> {/*variantColors[variant]*/}
+      {/*<div className="score-box">
+          <Circle size="base" color={stoneColor}>
             <p>{score}/5</p>
           </Circle>
-        </div>
+        </div>*/}
+      {/* SCORE - Only show when game has started */}
+      {!showStart && hasStarted && (
+        
+        <Circle size='game' color={stoneColor}>
+          <div className="score-box">
+            <img className="score__img" src={data.img} alt={variant} />
+            <p className=" score__text default-text">{score}/5</p>
+          </div>
+        </Circle>
       )}
 
       {/* START OVERLAY */}

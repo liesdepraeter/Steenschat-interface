@@ -3,7 +3,7 @@ import './Circle.css'
 
 export type CircleColor = StoneData["color"];
 
-type CircleSize = 'small' | 'medium' | 'large' | 'base' | 'xlarge';
+type CircleSize = 'small' | 'medium' | 'large' | 'base' | 'game' | 'xlarge';
 {/*type CircleColor = 'red' | 'blue' | 'light-red' | 'lemon' | 'green' | 'orange' | 'yellow' | 'purple';
 type CircleText = 'rozenkwarts' | 'citrien' | 'aventurijn' | 'obsidiaan' | 'amethist';*/}
 type CircleIndex = 'default' | 'high';
