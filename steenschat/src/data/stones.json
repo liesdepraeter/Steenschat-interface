@@ -4,7 +4,7 @@
     "img": "/images/stones/rozenkwarts.png",
     "sound": "/sounds/stones/rozenkwarts.mp3",
     "color": "red",
-    "fact": "Rozenkwarts is, na water en ijs, het meest voorkomende mineraal op aarde",
+    "fact": "Rozenkwarts na water en ijs, het meest voorkomende mineraal op aarde is",
     "game": "catchgame"
   },
   {
@@ -28,7 +28,7 @@
     "img": "/images/stones/obsidiaan.png",
     "sound": "/sounds/stones/obsidiaan.mp3",
     "color": "blue",
-    "fact": "Obsidiaan eigenlijk snel afgekoelde, natuurlijke vulkanisch glas is",
+    "fact": "Obsidiaan eigenlijk snel afgekoelde, natuurlijk vulkanisch glas is",
     "game": "searchgame"
   },
   {
