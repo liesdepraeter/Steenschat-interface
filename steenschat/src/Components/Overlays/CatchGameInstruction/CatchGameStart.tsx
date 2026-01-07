@@ -3,7 +3,7 @@ import ScoreInstruction from '../../Instruction/CatchGame/ScoreInstruction'
 import Circle from '../../Circle/Circle';
 import IconArrow from '../../Icons/IconArrow'
 import'./CatchGameStart.css'
-import { useInputController } from '../../../Hooks/useInputController';
+{/*import { useInputController } from '../../../Hooks/useInputController';*/}
 import { useEffect, useState } from 'react';
 
 
@@ -32,13 +32,13 @@ function CatchGameStart({variant='rozenkwarts', onStart} : CatchGameProps) {
     onStart?.();
   };
 
-   useInputController({
+   {/*useInputController({
     onCommand: (cmd) => {
       if(cmd === 'right') onStart?.(); 
       if(cmd === 'left') console.log("eventueel terug of andere actie");
     },
     confirmOnAnyPress: false,
-  });
+  });*/}
 
   return (
     <div className='full-screen-container overlay-start' onClick={handleOverlayClick}>
