@@ -1,8 +1,9 @@
 import {type StoneType} from '../../../data/stones';
 import './SearchGameStart.css'
 import IconArrow from '../../Icons/IconArrow';
-import { useInputController } from '../../../Hooks/useInputController';
+{/*import { useInputController } from '../../../Hooks/useInputController';*/}
 import { useRef } from 'react';
+import Countdown from '../../Countdown';
 
 interface SearchGameProps {
   variant?: StoneType;
@@ -18,7 +19,7 @@ function SearchGameStart({onStart} : SearchGameProps) {
     onStart?.();
   };
 
-  useInputController({
+  {/*useInputController({
     onCommand: (cmd) => {
       if (hasStartedRef.current) return;
       if(cmd === 'right') {
@@ -28,7 +29,7 @@ function SearchGameStart({onStart} : SearchGameProps) {
       if(cmd === 'left') console.log("eventueel terug of andere actie");
     },
     confirmOnAnyPress: false,
-  });
+  });*/}
 
   return (
     <div className='full-screen-container overlay--search' onClick={handleOverlayClick}>
@@ -42,6 +43,7 @@ function SearchGameStart({onStart} : SearchGameProps) {
           </div>
           <IconArrow index='high' size='button' color='yellow' arrow='white'/>
         </div>
+        <Countdown start={5} onComplete={onStart}/>
       </div>
       
       {/* NavigationIntstruction removed; keep IconArrow controls above for in-game instruction */}

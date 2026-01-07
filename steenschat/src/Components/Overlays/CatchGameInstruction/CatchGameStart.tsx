@@ -4,7 +4,7 @@ import Circle from '../../Circle/Circle';
 import IconArrow from '../../Icons/IconArrow'
 import'./CatchGameStart.css'
 {/*import { useInputController } from '../../../Hooks/useInputController';*/}
-import { useEffect, useState } from 'react';
+{/*import { useEffect, useState } from 'react';*/}
 import Countdown from '../../Countdown';
 
 
