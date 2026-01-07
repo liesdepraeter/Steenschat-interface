@@ -32,7 +32,6 @@ function SearchGameStart({onStart} : SearchGameProps) {
 
   return (
     <div className='full-screen-container overlay--search' onClick={handleOverlayClick}>
-      <div></div>
       <div className='game-intsruction--search'>
         <p className='content__text default-text text--reverse'>Beweeg het vergrootglas met de knoppen en vind de steen</p>
         <div className='arrow-wrapper'>
