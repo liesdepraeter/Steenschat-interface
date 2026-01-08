@@ -1,3 +1,25 @@
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+}
+
+body {
+  position: fixed !important;
+  top: -40px !important; /* Compenseer voor balk */
+  left: 0 !important;
+  height: calc(100vh + 40px) !important;
+}
+
+#root {
+  width: 100vw !important;
+  height: 100vh !important;
+  position: relative !important;
+  top: 40px !important; /* Content terug op juiste plek */
+}
+
 @font-face {
   font-family: "Mabry Black Pro";
   src: url("/fonts/mabry-black-pro.otf") format("otf");
@@ -97,6 +119,10 @@
   --image-size: 96px;    /* default image diameter */
   --rock-size: 3rem;     /* default rock size */
 }
+
+
+
+
 
 .title-text {
   font-family: 'Mabry Pro Black', Arial, Helvetica, sans-serif;
