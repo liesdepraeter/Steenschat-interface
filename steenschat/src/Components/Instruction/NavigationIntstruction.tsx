@@ -44,10 +44,10 @@ const NavigationIntstruction: React.FC<InstructionProps> = ({ index='default', c
     <div className={`nav instruction--${index}`}>
         <div className='nav__back' onClick={handleBack}>
             <IconArrow size='nav' color='blue' arrow={arrowColor}/>
-            <p className={`default-text ${textClass}`}>Nieuwe steen</p>
+            <p className={`default-text ${textClass}`} style={{ color: 'black' }}>Nieuwe steen</p>
         </div>
         <div className='nav__next' onClick={handleNext}>
-            <p className={`default-text ${textClass}`}>Speel het spel</p>
+            <p className={`default-text ${textClass}`} style={{ color: 'black' }}>Speel het spel</p>
             <IconArrow size='nav' color='green' arrow={arrowColor}/>
         </div>
     </div>
